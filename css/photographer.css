@@ -2,6 +2,10 @@
     display: none;
 }
 
+header img{
+    height: 50px;
+}
+
 .photographer_header {
     background-color: #FAFAFA;
     height: 300px;
@@ -67,6 +71,24 @@
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
+}
+
+.photographer_media{
+    display: flex; 
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 95px;
+}
+
+.photographer_media img{
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+}
+.photographer_media video{
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
 }
 
 .contact_button {
