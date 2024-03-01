@@ -14,6 +14,8 @@ function photographerTemplate(data) {
         //img.setAttribute("alt", `Portrait de ${name}`)
         img.setAttribute("aria-label", `Photo de profil de ${name}`)
     //Création des différentes informations liées au photographe
+        const div = document.createElement('div');
+        div.classList.add("photographerInfos")
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         const h3 = document.createElement('h3');
@@ -24,11 +26,12 @@ function photographerTemplate(data) {
         p.innerText = `${price}€/jour`;
     //Rattachement au code HTML
         article.appendChild(a);
+        article.appendChild(div);
         a.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(h3);
-        article.appendChild(h4);
-        article.appendChild(p);
+        div.appendChild(h2);
+        div.appendChild(h3);
+        div.appendChild(h4);
+        div.appendChild(p);
         return (article);
     }
     return { name, picture, id, getUserCardDOM }
