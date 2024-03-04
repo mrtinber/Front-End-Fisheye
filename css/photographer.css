@@ -8,6 +8,7 @@ header img{
 
 .photographer_header {
     background-color: #FAFAFA;
+    border-radius: 5px;
     height: 300px;
     margin: 0 100px;
     display: flex;
@@ -59,10 +60,10 @@ header img{
 
 .photographer_header article p{
     display: none;
-    color: #757575;
+    /* color: #757575;
     font-size: 9px;
     font-weight: 400;
-    margin: 0;
+    margin: 0; */
 }
 
 .photographer_header article img {
@@ -77,18 +78,72 @@ header img{
     display: flex; 
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 95px;
+    gap: 20px;
+    margin: 100px;
+}
+
+.photographer_media article{
+    width: 30%;
 }
 
 .photographer_media img{
-    width: 350px;
+    /* width: 350px; */
+    width: 100%;
     height: 300px;
+    border-radius: 5px;
     object-fit: cover;
 }
+
 .photographer_media video{
-    width: 350px;
+    /* width: 350px; */
+    width: 100%;
     height: 300px;
+    border-radius: 5px;
     object-fit: cover;
+}
+
+.photographer_media article div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.photographer_media article div h3{
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0;
+}
+.photographer_media article div p{
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.photographer_price{
+    background: #DB8876;
+    border-radius: 5px;
+    width: 376px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    padding: 21px 34px 0;
+
+    position: fixed;
+    bottom: -16px;
+    right: 36px;
+    z-index: 250;
+}
+
+.photographer_price p{
+    color: black;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
 }
 
 .contact_button {

@@ -23,6 +23,7 @@ function photographerTemplate(data) {
         const h4 = document.createElement('h4');
         h4.innerText = tagline;
         const p = document.createElement('p')
+        p.setAttribute("id", "dailyPrice")
         p.innerText = `${price}€/jour`;
     //Rattachement au code HTML
         article.appendChild(a);

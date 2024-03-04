@@ -30,9 +30,19 @@ class photographerFactory {
         console.log(mediaId);
     
         if (mediaId) { // Vérifie si des médias ont été trouvés
+            const mediaCard = document.createElement("article");
             const img = document.createElement("img");
             img.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.image}`);
-            photographersMedia.appendChild(img);
+            const mediaInfos = document.createElement("div");
+            const mediaTitle = document.createElement("h3");
+            mediaTitle.innerText = `${this.media.title}`;
+            const mediaLikes = document.createElement("p");
+            mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart"></i>`;
+            photographersMedia.appendChild(mediaCard);
+            mediaCard.appendChild(img);
+            mediaCard.appendChild(mediaInfos);
+            mediaInfos.appendChild(mediaTitle);
+            mediaInfos.appendChild(mediaLikes);
             return img;
         }
     }
@@ -51,10 +61,12 @@ class photographerFactory {
         console.log(mediaId);
     
         if (mediaId) { // Vérifie si des médias ont été trouvés
+            const mediaCard = document.createElement("article");
             const video = document.createElement("video");
             video.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.video}`);
             video.setAttribute("controls", "");
-            photographersMedia.appendChild(video);
+            photographersMedia.appendChild(mediaCard);
+            mediaCard.appendChild(video);
             return video;
         }
     }

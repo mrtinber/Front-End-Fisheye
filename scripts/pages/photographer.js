@@ -28,6 +28,13 @@ async function displayData(photographers) {
         const userCardDOM = photographerModel.getUserCardDOM();
         photographersHeader.appendChild(userCardDOM);
     }
+
+    const photographerPrice = document.getElementById("dailyPrice");
+    const divPrice = document.querySelector(".photographer_price");
+    const totalLikes = document.createElement("p")
+    totalLikes.innerHTML = `XX <i class="fa-solid fa-heart"></i>`
+    divPrice.appendChild(totalLikes);
+    divPrice.appendChild(photographerPrice);
 }
 
 async function init() {
