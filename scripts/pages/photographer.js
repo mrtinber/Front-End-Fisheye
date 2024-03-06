@@ -27,13 +27,7 @@ async function displayData(photographers) {
         photographersHeader.appendChild(userCardDOM);
     }
 
-    //Création de l'onglet flottant avec le prix et le total de likes
-    const photographerPrice = document.getElementById("dailyPrice");
-    const divPrice = document.querySelector(".photographer_price");
-    const totalLikes = document.createElement("p")
-    totalLikes.innerHTML = `XX <i class="fa-solid fa-heart"></i>`
-    divPrice.appendChild(totalLikes);
-    divPrice.appendChild(photographerPrice);
+
 
     //Ajout du nom dans la modal
     const modalHeader = document.querySelector(".modal header h2");
@@ -41,15 +35,46 @@ async function displayData(photographers) {
     
 }
 
-function generateMedia(photographers, media){
+function generateMedia(photographers, media) {
+    let createdMedia = [];
+
     // Création de la factory pour chaque media
-    const mediaElements = media.map(mediaUnit => {
+    media.forEach(mediaUnit => {
         const factory = new photographerFactory(photographers, mediaUnit);
-        return factory.createMediaElement();
+        const createdElement = factory.createMediaElement();
+        if (createdElement) {
+            createdMedia.push(createdElement);
+        }
     });
 
-    console.log(mediaElements);
+   // Somme des likes pour les éléments créés
+   let totalLikes = 0;
+   createdMedia.forEach(function(unit) {
+       const likes = unit.getAttribute('data-likes');
+       if (likes) {
+           totalLikes += parseInt(likes);
+       }
+   });
 
+    //Création de l'onglet flottant avec le prix et le total de likes
+    const photographerPrice = document.getElementById("dailyPrice");
+    const divPrice = document.querySelector(".photographer_price");
+    const photographerLikes = document.createElement("p")
+    photographerLikes.innerHTML = `${totalLikes} <i class="fa-solid fa-heart"></i>`
+    divPrice.appendChild(photographerLikes);
+    divPrice.appendChild(photographerPrice);
+
+    //Incrémentation des likes au clic
+    const likeBtn = document.querySelector(".fa-heart")
+    const likeNumber = document.querySelector(".photographer_media p")
+    console.log(likeNumber);
+    likeBtn.addEventListener("click", () => {
+        console.log(media);
+        likeNumber.innerHTML = `${this.media.likes++} <i class="fa-solid fa-heart"></i>`
+    })
+
+    console.log(createdMedia);
+    console.log("Total Likes:", totalLikes);
 }
 
 async function init() {
@@ -57,45 +82,9 @@ async function init() {
     const { photographers, media } = await getPhotographers();
     displayData(photographers);
 
-    generateMedia(photographers, media);
+    generateMedia(photographers, media);  
 
-    // Tri des médias grâce aux filtres
-    const filterPopularity = document.getElementById("filter_popularity")
-    filterPopularity.addEventListener("click", function(){
-        media.sort(function(a,b){
-            return b.likes - a.likes;
-        })
-        console.log(media);
-        const photographersMedia = document.querySelector(".photographer_media");
-        photographersMedia.innerHTML="";
-        generateMedia(photographers, media);
-    })
-    const filterDate = document.getElementById("filter_date")
-    filterDate.addEventListener("click", function(){
-        media.sort(function(a,b){
-            return new Date(b.date) - new Date(a.date);
-        })
-        console.log(media);
-        const photographersMedia = document.querySelector(".photographer_media");
-        photographersMedia.innerHTML="";
-        generateMedia(photographers, media);
-    })
-    const filterTitle = document.getElementById("filter_title")
-    filterTitle.addEventListener("click", function(){
-        media.sort(function (a, b) {
-            if (a.title < b.title) {
-              return -1;
-            }
-            if (a.title > b.title) {
-              return 1;
-            }
-            return 0;
-          });
-        console.log(media);
-        const photographersMedia = document.querySelector(".photographer_media");
-        photographersMedia.innerHTML="";
-        generateMedia(photographers, media);
-    })
+    // filters(photographers, media);
 }
 
 init();
@@ -131,3 +120,41 @@ filterChoice.forEach(choice => {
     });
 });
 
+// Tri des médias grâce aux filtres
+function filters(photographers, media) {
+    const filterPopularity = document.getElementById("filter_popularity");
+    const filterDate = document.getElementById("filter_date");
+    const filterTitle = document.getElementById("filter_title");
+
+    function applyFilter(sortFunction) {
+        media.sort(sortFunction);
+        console.log(media);
+        const photographersMedia = document.querySelector(".photographer_media");
+        photographersMedia.innerHTML = "";
+        generateMedia(photographers, media);
+    }
+
+    filterPopularity.addEventListener("click", function() {
+        applyFilter(function(a, b) {
+            return b.likes - a.likes;
+        });
+    });
+
+    filterDate.addEventListener("click", function() {
+        applyFilter(function(a, b) {
+            return new Date(b.date) - new Date(a.date);
+        });
+    });
+
+    filterTitle.addEventListener("click", function() {
+        applyFilter(function(a, b) {
+            if (a.title < b.title) {
+                return -1;
+            }
+            if (a.title > b.title) {
+                return 1;
+            }
+            return 0;
+        });
+    });
+}

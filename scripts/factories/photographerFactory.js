@@ -2,6 +2,8 @@ class photographerFactory {
     constructor(data, media) {
         this.data = data;
         this.media = media;
+        this.likes = 0;
+        this.mediaObjects = []; // Variable pour stocker les objets media
     }
 
     createMediaElement() {
@@ -23,16 +25,14 @@ class photographerFactory {
 
         const photographersMedia = document.querySelector(".photographer_media");
 
-        // console.log(this.media);
-    
         // Recherche des médias avec l'ID du photographe correspondant
         const mediaId = this.media.photographerId === parseInt(photographerID);
-        // console.log(mediaId);
     
         if (mediaId) { // Vérifie si des médias ont été trouvés
             const mediaCard = document.createElement("article");
             const img = document.createElement("img");
             img.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.image}`);
+            img.setAttribute("data-likes", `${this.media.likes}`)
             const mediaInfos = document.createElement("div");
             const mediaTitle = document.createElement("h3");
             mediaTitle.innerText = `${this.media.title}`;
@@ -43,6 +43,7 @@ class photographerFactory {
             mediaCard.appendChild(mediaInfos);
             mediaInfos.appendChild(mediaTitle);
             mediaInfos.appendChild(mediaLikes);
+
             return img;
         }
     }
@@ -53,18 +54,16 @@ class photographerFactory {
         let photographerID = params.get("id");
 
         const photographersMedia = document.querySelector(".photographer_media");
-
-        // console.log(this.media);
     
         // Recherche des médias avec l'ID du photographe correspondant
         const mediaId = this.media.photographerId === parseInt(photographerID);
-        // console.log(mediaId);
-    
-        if (mediaId) { // Vérifie si des médias ont été trouvés
+
+        if (mediaId === true) { // Vérifie si des médias ont été trouvés
             const mediaCard = document.createElement("article");
             const video = document.createElement("video");
             video.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.video}`);
             // video.setAttribute("controls", "");
+            video.setAttribute("data-likes", `${this.media.likes}`)
 
             const mediaInfos = document.createElement("div");
             const mediaTitle = document.createElement("h3");
@@ -76,6 +75,7 @@ class photographerFactory {
             mediaCard.appendChild(mediaInfos);
             mediaInfos.appendChild(mediaTitle);
             mediaInfos.appendChild(mediaLikes);
+            
             return video;
         }
     }
