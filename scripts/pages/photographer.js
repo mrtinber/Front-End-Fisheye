@@ -47,14 +47,27 @@ function generateMedia(photographers, media) {
         }
     });
 
-   // Somme des likes pour les éléments créés
-   let totalLikes = 0;
-   createdMedia.forEach(function(unit) {
-       const likes = unit.getAttribute('data-likes');
-       if (likes) {
-           totalLikes += parseInt(likes);
-       }
-   });
+    generateLikes(createdMedia)
+
+    const likeBtn = document.querySelectorAll(".fa-heart");
+    likeBtn.forEach (btn => {
+        btn.addEventListener("click", () => {
+            const photographerLikes = document.querySelector(".photographer_price p")
+            photographerLikes.innerHTML = "";
+            generateLikes(createdMedia);
+        });
+    });
+}
+
+function generateLikes(createdMedia){
+    // Somme des likes pour les éléments créés
+    let totalLikes = 0;
+    createdMedia.forEach(function(unit) {
+        const likes = unit.getAttribute('data-likes');
+        if (likes) {
+            totalLikes += parseInt(likes);
+        }
+    });
 
     //Création de l'onglet flottant avec le prix et le total de likes
     const photographerPrice = document.getElementById("dailyPrice");
@@ -63,15 +76,6 @@ function generateMedia(photographers, media) {
     photographerLikes.innerHTML = `${totalLikes} <i class="fa-solid fa-heart"></i>`
     divPrice.appendChild(photographerLikes);
     divPrice.appendChild(photographerPrice);
-
-    //Incrémentation des likes au clic
-    const likeBtn = document.querySelector(".fa-heart")
-    const likeNumber = document.querySelector(".photographer_media p")
-    console.log(likeNumber);
-    likeBtn.addEventListener("click", () => {
-        console.log(media);
-        likeNumber.innerHTML = `${this.media.likes++} <i class="fa-solid fa-heart"></i>`
-    })
 
     console.log(createdMedia);
     console.log("Total Likes:", totalLikes);

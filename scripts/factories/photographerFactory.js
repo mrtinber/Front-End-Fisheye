@@ -32,7 +32,8 @@ class photographerFactory {
             const mediaCard = document.createElement("article");
             const img = document.createElement("img");
             img.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.image}`);
-            img.setAttribute("data-likes", `${this.media.likes}`)
+            img.setAttribute("data-likes", `${this.media.likes}`);
+            // img.setAttribute("onclick", "displayLightbox()")
             const mediaInfos = document.createElement("div");
             const mediaTitle = document.createElement("h3");
             mediaTitle.innerText = `${this.media.title}`;
@@ -43,6 +44,17 @@ class photographerFactory {
             mediaCard.appendChild(mediaInfos);
             mediaInfos.appendChild(mediaTitle);
             mediaInfos.appendChild(mediaLikes);
+        
+            // Stocker une référence aux données du média
+            const mediaData = this.media;
+            console.log(mediaData)
+
+            //Incrémentation des likes au clic
+            mediaLikes.addEventListener("click", function() {
+                mediaData.likes++
+                mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart"></i>`;
+                img.setAttribute("data-likes", `${mediaData.likes}`);
+            });
 
             return img;
         }
@@ -75,7 +87,7 @@ class photographerFactory {
             mediaCard.appendChild(mediaInfos);
             mediaInfos.appendChild(mediaTitle);
             mediaInfos.appendChild(mediaLikes);
-            
+           
             return video;
         }
     }

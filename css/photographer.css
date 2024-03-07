@@ -326,3 +326,37 @@ form .submit_button{
     border-radius: 5px;
     cursor: pointer;
 }
+
+/***********Lightbox***********/
+
+#lightbox{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 9000;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: none;
+}
+
+#lightbox.active{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox_content{
+    position: relative;
+}
+
+.lightbox_content img{
+    height: 900px;
+    border-radius: 5px;
+}
+
+#lightbox.active i{
+    color: #901C1C;
+    font-size: 72px;
+    position: absolute;
+    right: -66px;
+}
