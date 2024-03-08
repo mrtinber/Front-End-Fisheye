@@ -335,7 +335,7 @@ form .submit_button{
     position: fixed;
     top: 0;
     z-index: 9000;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.95);
     display: none;
 }
 
@@ -347,16 +347,33 @@ form .submit_button{
 
 .lightbox_content{
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .lightbox_content img{
-    height: 900px;
+    height: 800px;
     border-radius: 5px;
+}
+.lightbox_content video{
+    width: 1200px;
+    border-radius: 5px;
+}
+
+.lightbox_content h3{
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 6px 0 0;
 }
 
 #lightbox.active i{
     color: #901C1C;
     font-size: 72px;
+}
+.lightbox_content .fa-xmark{
     position: absolute;
-    right: -66px;
+    right: 0;
+    top: 0;
 }

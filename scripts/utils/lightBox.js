@@ -9,15 +9,17 @@ function closeLightbox(){
 }
 
 window.addEventListener("load", function() {
-    // Votre code lightBox.js ici
 
-    const cardPictures = document.querySelectorAll("img");
-    console.log(cardPictures);
+    const cardTitles = document.querySelectorAll(".photographer_media h3");
+    const cardMedia = document.querySelectorAll(".photographer_media img, .photographer_media video");
+    
+    console.log(cardMedia);
+    console.log(cardTitles);
 
     let currentImageIndex = 0; // Indice de l'image actuellement affichée
 
     function showPicture() {
-        cardPictures.forEach((picture, index) => {
+        cardMedia.forEach((picture, index) => {
             picture.addEventListener("click", () => {
                 currentImageIndex = index; // Met à jour l'indice de l'image actuelle
                 displayLightbox();
@@ -27,17 +29,37 @@ window.addEventListener("load", function() {
     }
 
     function displayImage(index) {
+        const mediaType = cardMedia[index].tagName.toLowerCase(); // Récupérer le type de média (img ou video)
+
         const displayedImage = `
             <div class="lightbox_content">
-                <img src="${cardPictures[index].src}">
+                <i class="fa-solid fa-chevron-left"></i>
+                <div>
+                    ${mediaType === "video" ? `<video src="${cardMedia[index].src}" controls></video>` : cardMedia[index].outerHTML}
+                    <h3>${cardTitles[index].textContent}</h3>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
                 <i class="fa-solid fa-xmark" onclick="closeLightbox()"></i>
-            </div>`;
+                </div>`;
         while (lightBox.firstChild) {
             lightBox.removeChild(lightBox.firstChild);
         }
         lightBox.innerHTML = displayedImage;
+        
+        // Ajouter un écouteur d'événements pour détecter le clic sur "avant" ou "après"
+        const leftArrow = document.querySelector(".fa-chevron-left")
+        const rightArrow = document.querySelector(".fa-chevron-right")
+        
+        rightArrow.addEventListener("click", () => {
+            currentImageIndex = (currentImageIndex + 1) % cardMedia.length;
+            displayImage(currentImageIndex)
+        });
+        leftArrow.addEventListener("click", ()=> {
+            currentImageIndex = (currentImageIndex - 1 + cardMedia.length) % cardPictures.length;
+            displayImage(currentImageIndex);
+        })
     }
-    
+
     lightBox.addEventListener("click", e => {
         if(e.target !== e.currentTarget) return
         closeLightbox();
@@ -57,13 +79,13 @@ window.addEventListener("load", function() {
         const key = e.key;
         
         if (key === "ArrowRight") { // Touche "avant"
-            currentImageIndex = (currentImageIndex + 1) % cardPictures.length;
+            currentImageIndex = (currentImageIndex + 1) % cardMedia.length;
             displayImage(currentImageIndex);
         } else if (key === "ArrowLeft") { // Touche "arrière"
-            currentImageIndex = (currentImageIndex - 1 + cardPictures.length) % cardPictures.length;
+            currentImageIndex = (currentImageIndex - 1 + cardMedia.length) % cardMedia.length;
             displayImage(currentImageIndex);
         }
     });
-    
+
     showPicture()
 });
