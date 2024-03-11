@@ -1,4 +1,4 @@
-class photographerFactory {
+export class PhotographerFactory {
     constructor(data, media) {
         this.data = data;
         this.media = media;
@@ -33,7 +33,6 @@ class photographerFactory {
             const img = document.createElement("img");
             img.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.image}`);
             img.setAttribute("data-likes", `${this.media.likes}`);
-            // img.setAttribute("onclick", "displayLightbox()")
             const mediaInfos = document.createElement("div");
             const mediaTitle = document.createElement("h3");
             mediaTitle.innerText = `${this.media.title}`;
@@ -47,11 +46,20 @@ class photographerFactory {
         
             // Stocker une référence aux données du média
             const mediaData = this.media;
-            console.log(mediaData)
+
+            // const photographerTotalLikes = document.querySelector("#total_likes");
+
 
             //Incrémentation des likes au clic
             mediaLikes.addEventListener("click", function() {
-                mediaData.likes++
+                if (mediaData.liked) {
+                    mediaData.likes--; // Diminuer les likes si l'utilisateur a déjà aimé
+                } else {
+                    mediaData.likes++; // Augmenter les likes si l'utilisateur n'a pas encore aimé
+                }
+                mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
+                console.log(mediaData.liked);
+
                 mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart"></i>`;
                 img.setAttribute("data-likes", `${mediaData.likes}`);
             });
@@ -74,7 +82,6 @@ class photographerFactory {
             const mediaCard = document.createElement("article");
             const video = document.createElement("video");
             video.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.video}`);
-            // video.setAttribute("controls", "");
             video.setAttribute("data-likes", `${this.media.likes}`)
 
             const mediaInfos = document.createElement("div");
@@ -87,6 +94,23 @@ class photographerFactory {
             mediaCard.appendChild(mediaInfos);
             mediaInfos.appendChild(mediaTitle);
             mediaInfos.appendChild(mediaLikes);
+
+            // Stocker une référence aux données du média
+            const mediaData = this.media;
+
+            //Incrémentation des likes au clic
+            mediaLikes.addEventListener("click", function() {
+                if (mediaData.liked) {
+                    mediaData.likes--; // Diminuer les likes si l'utilisateur a déjà aimé
+                } else {
+                    mediaData.likes++; // Augmenter les likes si l'utilisateur n'a pas encore aimé
+                }
+                mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
+                console.log(mediaData.liked);
+
+                mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart"></i>`;
+                video.setAttribute("data-likes", `${mediaData.likes}`);
+            });
            
             return video;
         }

@@ -8,6 +8,7 @@ function closeModal() {
     modal.style.display = "none";
 }
 
+
 btnSubmit = document.querySelector(".submit_button")
 btnSubmit.addEventListener("click", function(event){
     event.preventDefault();

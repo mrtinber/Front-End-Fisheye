@@ -8,7 +8,7 @@ function closeLightbox(){
     lightBox.classList.remove("active");
 }
 
-window.addEventListener("load", function() {
+export function generateLightBox(createdMedia){ 
 
     const cardTitles = document.querySelectorAll(".photographer_media h3");
     const cardMedia = document.querySelectorAll(".photographer_media img, .photographer_media video");
@@ -18,8 +18,8 @@ window.addEventListener("load", function() {
 
     let currentImageIndex = 0; // Indice de l'image actuellement affichée
 
-    function showPicture() {
-        cardMedia.forEach((picture, index) => {
+    function showPictureInLightbox() {
+        createdMedia.forEach((picture, index) => {
             picture.addEventListener("click", () => {
                 currentImageIndex = index; // Met à jour l'indice de l'image actuelle
                 displayLightbox();
@@ -29,17 +29,17 @@ window.addEventListener("load", function() {
     }
 
     function displayImage(index) {
-        const mediaType = cardMedia[index].tagName.toLowerCase(); // Récupérer le type de média (img ou video)
+        const mediaType = createdMedia[index].tagName.toLowerCase(); // Récupérer le type de média (img ou video)
 
         const displayedImage = `
             <div class="lightbox_content">
                 <i class="fa-solid fa-chevron-left"></i>
                 <div>
-                    ${mediaType === "video" ? `<video src="${cardMedia[index].src}" controls></video>` : cardMedia[index].outerHTML}
-                    <h3>${cardTitles[index].textContent}</h3>
+                    ${mediaType === "video" ? `<video src="${createdMedia[index].src}" controls></video>` : createdMedia[index].outerHTML}
+                    <h3>${createdMedia[index].textContent}</h3>
                 </div>
                 <i class="fa-solid fa-chevron-right"></i>
-                <i class="fa-solid fa-xmark" onclick="closeLightbox()"></i>
+                <i class="fa-solid fa-xmark"></i>
                 </div>`;
         while (lightBox.firstChild) {
             lightBox.removeChild(lightBox.firstChild);
@@ -55,8 +55,13 @@ window.addEventListener("load", function() {
             displayImage(currentImageIndex)
         });
         leftArrow.addEventListener("click", ()=> {
-            currentImageIndex = (currentImageIndex - 1 + cardMedia.length) % cardPictures.length;
+            currentImageIndex = (currentImageIndex - 1 + cardMedia.length) % cardMedia.length;
             displayImage(currentImageIndex);
+        });
+
+        const closeBtn = document.querySelector(".fa-xmark");
+        closeBtn.addEventListener("click", () => {
+            closeLightbox();
         })
     }
 
@@ -87,5 +92,5 @@ window.addEventListener("load", function() {
         }
     });
 
-    showPicture()
-});
+    showPictureInLightbox()
+};

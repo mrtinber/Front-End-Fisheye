@@ -1,10 +1,14 @@
+import { PhotographerFactory } from "../factories/photographerFactory.js";
+import { generateLightBox } from "../utils/lightbox.js";
+
+let createdMedia = [];
+
 async function getPhotographers() {
     // Charger le fichier JSON
     const response = await fetch('./data/photographers.json');
 
     // Convertir la réponse en JSON
     const photographersData = await response.json();
-    //console.log(photographersData);
     
     // Retourner les données des photographes
     return photographersData;
@@ -27,37 +31,27 @@ async function displayData(photographers) {
         photographersHeader.appendChild(userCardDOM);
     }
 
-
-
     //Ajout du nom dans la modal
     const modalHeader = document.querySelector(".modal header h2");
-    modalHeader.innerHTML = `Contactez-moi <br>${photographer.name}`;
-    
+    modalHeader.innerHTML = `Contactez-moi <br>${photographer.name}`;   
 }
 
 function generateMedia(photographers, media) {
-    let createdMedia = [];
 
     // Création de la factory pour chaque media
     media.forEach(mediaUnit => {
-        const factory = new photographerFactory(photographers, mediaUnit);
+        const factory = new PhotographerFactory(photographers, mediaUnit);
         const createdElement = factory.createMediaElement();
+
         if (createdElement) {
+            createdElement.textContent = mediaUnit.title;
             createdMedia.push(createdElement);
         }
     });
 
-    generateLikes(createdMedia)
-
-    const likeBtn = document.querySelectorAll(".fa-heart");
-    likeBtn.forEach (btn => {
-        btn.addEventListener("click", () => {
-            const photographerLikes = document.querySelector(".photographer_price p")
-            photographerLikes.innerHTML = "";
-            generateLikes(createdMedia);
-        });
-    });
+    generateLightBox(createdMedia);
 }
+
 
 function generateLikes(createdMedia){
     // Somme des likes pour les éléments créés
@@ -68,17 +62,34 @@ function generateLikes(createdMedia){
             totalLikes += parseInt(likes);
         }
     });
-
+    
     //Création de l'onglet flottant avec le prix et le total de likes
-    const photographerPrice = document.getElementById("dailyPrice");
     const divPrice = document.querySelector(".photographer_price");
-    const photographerLikes = document.createElement("p")
-    photographerLikes.innerHTML = `${totalLikes} <i class="fa-solid fa-heart"></i>`
+    const photographerLikes = document.createElement("div");
     divPrice.appendChild(photographerLikes);
+    const photographerPrice = document.getElementById("dailyPrice");
     divPrice.appendChild(photographerPrice);
+    photographerLikes.innerHTML = `<p id="total_likes">${totalLikes}</p> <i class="fa-solid fa-heart"></i>`
 
     console.log(createdMedia);
     console.log("Total Likes:", totalLikes);
+
+    // //Incrémentation des likes au clic
+    // const mediaLikes = document.querySelectorAll(".fa-heart");
+    // mediaLikes.forEach(function(heart) {
+    //     heart.addEventListener("click", () => {
+    //     // if (mediaData.liked) {
+    //     //     mediaData.likes--; // Diminuer les likes si l'utilisateur a déjà aimé
+    //     // } else {
+    //     //     mediaData.likes++; // Augmenter les likes si l'utilisateur n'a pas encore aimé
+    //     // }
+    //     // mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
+    //     // console.log(mediaData.liked);
+
+    //     totalLikes++
+    //     photographerLikes.innerHTML = `<p id="total_likes">${totalLikes}</p> <i class="fa-solid fa-heart"></i>`
+    //     });
+    // });
 }
 
 async function init() {
@@ -86,9 +97,10 @@ async function init() {
     const { photographers, media } = await getPhotographers();
     displayData(photographers);
 
-    generateMedia(photographers, media);  
+    generateMedia(photographers, media); 
+    generateLikes(createdMedia); 
 
-    // filters(photographers, media);
+    filters(photographers, media);
 }
 
 init();
@@ -129,13 +141,15 @@ function filters(photographers, media) {
     const filterPopularity = document.getElementById("filter_popularity");
     const filterDate = document.getElementById("filter_date");
     const filterTitle = document.getElementById("filter_title");
+    const photographersMedia = document.querySelector(".photographer_media");
 
     function applyFilter(sortFunction) {
         media.sort(sortFunction);
-        console.log(media);
-        const photographersMedia = document.querySelector(".photographer_media");
+        console.log({media});
+        console.log({photographersMedia});
         photographersMedia.innerHTML = "";
         generateMedia(photographers, media);
+        generateLightBox(createdMedia);
     }
 
     filterPopularity.addEventListener("click", function() {

@@ -37,6 +37,7 @@ header img{
     align-items: flex-start;
     flex-direction: column;
     gap: 16px;
+    width: 460px;
 }
 
 .photographer_header article h2 {
@@ -145,6 +146,7 @@ header img{
     top: 100%;
     left: 0;
     user-select: none;
+    z-index: 5000;
 
     max-height: 0;
     overflow: hidden;
@@ -166,7 +168,7 @@ header img{
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
-    margin: 0 100px;
+    margin: 30px 100px;
 }
 
 .photographer_media article{
@@ -231,6 +233,11 @@ header img{
     bottom: -16px;
     right: 36px;
     z-index: 250;
+}
+
+.photographer_price div{
+    display: flex;
+    flex-direction: row;
 }
 
 .photographer_price p{
@@ -306,12 +313,14 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 36px;
 }
 form textarea {
     width: 100%;
     height: 170px;
     border: none;
     border-radius: 5px;
+    font-size: 36px;
 }
 
 form .submit_button{
