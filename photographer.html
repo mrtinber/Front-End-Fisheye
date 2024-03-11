@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
   <body>
     <header>
       <a href="index.html" class="logo">
-        <img src="assets/images/logo.png"/>
+        <img src="assets/images/logo.png" alt="Fisheye logo" aria-label="Fisheye home page"/>
       </a>
     </header>
     <main id="main">
@@ -35,28 +35,28 @@
       <div class="photographer_price">
       </div>
       <div id="lightbox">
-        <img src="assets/icons/close.svg" onclick="closeLightbox()" />
+        <img src="assets/icons/close.svg" onclick="closeLightbox()"/>
       </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Close contact form"/>
         </header>
-				<form>
-					<div>
-						<label for="surname">Prénom</label>
-						<input type="text" id="surname"/>
-						<label for="name">Nom</label>
-						<input type="text" id="name"/>
-						<label for="email">E-mail</label>
-						<input type="email" id="email"/>
-            <label for="message">Votre message</label>
-            <textarea type="text" id="message" rows="3"></textarea>
-					</div>
+        <form>
+          <div>
+            <label id="surnameLabel" for="surname">Prénom</label>
+            <input type="text" id="surname" aria-labelledby="surnameLabel"/>
+            <label id="nameLabel" for="name">Nom</label>
+            <input type="text" id="name" aria-labelledby="nameLabel"/>
+            <label id="emailLabel" for="email">E-mail</label>
+            <input type="email" id="email" aria-labelledby="emailLabel"/>
+            <label id="messageLabel" for="message">Votre message</label>
+            <textarea id="message" rows="3" aria-labelledby="messageLabel"></textarea>
+          </div>
           <input class="submit_button" type="submit" value="Envoyer"/>
-				</form>
+        </form>
 			</div>
 		</div>
     <script type="module" src="scripts/pages/photographer.js"></script>

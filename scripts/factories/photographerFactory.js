@@ -33,11 +33,13 @@ export class PhotographerFactory {
             const img = document.createElement("img");
             img.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.image}`);
             img.setAttribute("data-likes", `${this.media.likes}`);
+            img.setAttribute("aria-label", `Cliquez pour agrandir`);
+            img.setAttribute("tabindex", "0");
             const mediaInfos = document.createElement("div");
             const mediaTitle = document.createElement("h3");
             mediaTitle.innerText = `${this.media.title}`;
             const mediaLikes = document.createElement("p");
-            mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart"></i>`;
+            mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart" aria-label="likes"></i>`;
             photographersMedia.appendChild(mediaCard);
             mediaCard.appendChild(img);
             mediaCard.appendChild(mediaInfos);

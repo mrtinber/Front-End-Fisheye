@@ -25,6 +25,16 @@ export function generateLightBox(createdMedia){
                 displayLightbox();
                 displayImage(currentImageIndex);
             });
+            
+            picture.addEventListener("keydown", e => {
+                const key = e.key
+
+                if(key === "Enter"){
+                currentImageIndex = index;
+                displayLightbox();
+                displayImage(currentImageIndex);
+                }
+            });
         });
     }
 
@@ -32,14 +42,14 @@ export function generateLightBox(createdMedia){
         const mediaType = createdMedia[index].tagName.toLowerCase(); // Récupérer le type de média (img ou video)
 
         const displayedImage = `
-            <div class="lightbox_content">
-                <i class="fa-solid fa-chevron-left"></i>
+            <div class="lightbox_content" aria-label="image close-up view">
+                <i class="fa-solid fa-chevron-left" aria-label="previous image"></i>
                 <div>
                     ${mediaType === "video" ? `<video src="${createdMedia[index].src}" controls></video>` : createdMedia[index].outerHTML}
                     <h3>${createdMedia[index].textContent}</h3>
                 </div>
-                <i class="fa-solid fa-chevron-right"></i>
-                <i class="fa-solid fa-xmark"></i>
+                <i class="fa-solid fa-chevron-right" aria-label="next image"></i>
+                <i class="fa-solid fa-xmark" aria-label="close dialog"></i>
                 </div>`;
         while (lightBox.firstChild) {
             lightBox.removeChild(lightBox.firstChild);
