@@ -35,6 +35,7 @@ export class PhotographerFactory {
             img.setAttribute("data-likes", `${this.media.likes}`);
             img.setAttribute("aria-label", `Cliquez pour agrandir`);
             img.setAttribute("tabindex", "0");
+            img.setAttribute("alt", `${this.media.alt}`);
             const mediaInfos = document.createElement("div");
             const mediaTitle = document.createElement("h3");
             mediaTitle.innerText = `${this.media.title}`;
@@ -85,6 +86,7 @@ export class PhotographerFactory {
             const video = document.createElement("video");
             video.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.video}`);
             video.setAttribute("data-likes", `${this.media.likes}`)
+            video.setAttribute("tabindex", "0");
 
             const mediaInfos = document.createElement("div");
             const mediaTitle = document.createElement("h3");
