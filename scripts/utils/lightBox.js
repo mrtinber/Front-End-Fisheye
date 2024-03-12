@@ -10,11 +10,7 @@ function closeLightbox(){
 
 export function generateLightBox(createdMedia){ 
 
-    const cardTitles = document.querySelectorAll(".photographer_media h3");
     const cardMedia = document.querySelectorAll(".photographer_media img, .photographer_media video");
-    
-    // console.log(cardMedia);
-    // console.log(cardTitles);
 
     let currentImageIndex = 0; // Indice de l'image actuellement affichée
 
@@ -43,18 +39,24 @@ export function generateLightBox(createdMedia){
 
         const displayedImage = `
             <div class="lightbox_content" aria-label="image close-up view">
-                <i class="fa-solid fa-chevron-left" aria-label="previous image"></i>
+                <i class="fa-solid fa-chevron-left" aria-label="previous image" tabindex="0"></i>
                 <div>
                     ${mediaType === "video" ? `<video src="${createdMedia[index].src}" controls></video>` : createdMedia[index].outerHTML}
-                    <h3>${createdMedia[index].textContent}</h3>
+                    <h3 tabindex="0">${createdMedia[index].textContent}</h3>
                 </div>
-                <i class="fa-solid fa-chevron-right" aria-label="next image"></i>
-                <i class="fa-solid fa-xmark" aria-label="close dialog"></i>
+                <i class="fa-solid fa-chevron-right" aria-label="next image" tabindex="0"></i>
+                <i class="fa-solid fa-xmark" aria-label="close dialog" tabindex="0"></i>
                 </div>`;
         while (lightBox.firstChild) {
             lightBox.removeChild(lightBox.firstChild);
         }
         lightBox.innerHTML = displayedImage;
+
+        // Définir le focus sur la balise img ou video
+        const mediaElement = lightBox.querySelector(mediaType);
+        if (mediaElement) {
+            mediaElement.focus();
+        }
         
         // Ajouter un écouteur d'événements pour détecter le clic sur "avant" ou "après"
         const leftArrow = document.querySelector(".fa-chevron-left")

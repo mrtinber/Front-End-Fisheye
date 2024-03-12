@@ -1,6 +1,9 @@
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+
+    const surnameInput = document.getElementById("surname");
+    surnameInput.focus();
 }
 
 function closeModal() {

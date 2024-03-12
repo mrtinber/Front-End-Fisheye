@@ -33,14 +33,24 @@ export class PhotographerFactory {
             const img = document.createElement("img");
             img.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.image}`);
             img.setAttribute("data-likes", `${this.media.likes}`);
-            img.setAttribute("aria-label", `Cliquez pour agrandir`);
+            // img.setAttribute("aria-label", `Cliquez pour agrandir`);
             img.setAttribute("tabindex", "0");
             img.setAttribute("alt", `${this.media.alt}`);
+            img.setAttribute("title", `${this.media.alt}`);
+
+            //Création d'un span pour les lecteurs d'écrans seulement
+            img.setAttribute("aria-describedby", "imageDescription");
+            const imageDescription = document.createElement("span");
+            imageDescription.classList.add("sr-only");
+            imageDescription.innerText = "Cliquez pour agrandir";
+            imageDescription.setAttribute("id", "imageDescription");
+            mediaCard.appendChild(imageDescription);
+
             const mediaInfos = document.createElement("div");
             const mediaTitle = document.createElement("h3");
             mediaTitle.innerText = `${this.media.title}`;
             const mediaLikes = document.createElement("p");
-            mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart" aria-label="likes"></i>`;
+            mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart" aria-label="likes" tabindex="0"></i>`;
             photographersMedia.appendChild(mediaCard);
             mediaCard.appendChild(img);
             mediaCard.appendChild(mediaInfos);
@@ -50,11 +60,11 @@ export class PhotographerFactory {
             // Stocker une référence aux données du média
             const mediaData = this.media;
 
-            // const photographerTotalLikes = document.querySelector("#total_likes");
-
-
             //Incrémentation des likes au clic
             mediaLikes.addEventListener("click", function() {
+                // const heart = document.querySelector(".fa-heart");
+                // heart.style.animation = "clicked 450ms ease";
+
                 if (mediaData.liked) {
                     mediaData.likes--; // Diminuer les likes si l'utilisateur a déjà aimé
                 } else {
@@ -65,6 +75,23 @@ export class PhotographerFactory {
 
                 mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart"></i>`;
                 img.setAttribute("data-likes", `${mediaData.likes}`);
+            });
+
+            //Incrémentation des likes avec la touche Entrée
+            mediaLikes.addEventListener("keydown", e => {
+                const key = e.key;
+                if(key === "Enter"){
+                    if (mediaData.liked) {
+                        mediaData.likes--; // Diminuer les likes si l'utilisateur a déjà aimé
+                    } else {
+                        mediaData.likes++; // Augmenter les likes si l'utilisateur n'a pas encore aimé
+                    }
+                    mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
+                    console.log(mediaData.liked);
+
+                    mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart" tabindex="0"></i>`;
+                    img.setAttribute("data-likes", `${mediaData.likes}`);
+                }
             });
 
             return img;
@@ -87,12 +114,21 @@ export class PhotographerFactory {
             video.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.video}`);
             video.setAttribute("data-likes", `${this.media.likes}`)
             video.setAttribute("tabindex", "0");
+            video.setAttribute("alt", `${this.media.alt}`);
+
+            //Création d'un span pour les lecteurs d'écrans seulement
+            video.setAttribute("aria-describedby", "imageDescription");
+            const imageDescription = document.createElement("span");
+            imageDescription.classList.add("sr-only");
+            imageDescription.innerText = "Cliquez pour agrandir";
+            imageDescription.setAttribute("id", "imageDescription");
+            mediaCard.appendChild(imageDescription);
 
             const mediaInfos = document.createElement("div");
             const mediaTitle = document.createElement("h3");
             mediaTitle.innerText = `${this.media.title}`;
             const mediaLikes = document.createElement("p");
-            mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart"></i>`;
+            mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart" tabindex="0"></i>`;
             photographersMedia.appendChild(mediaCard);
             mediaCard.appendChild(video);
             mediaCard.appendChild(mediaInfos);

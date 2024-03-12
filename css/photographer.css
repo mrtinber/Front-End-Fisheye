@@ -112,7 +112,7 @@ header img{
     transition: rotate 0.5s ease;
 }
 
-#filter_select{
+#filter_select, #fruitSelect{
     background-color: #901C1C;
     border-radius: 5px;
     width: 130px;
@@ -217,6 +217,20 @@ header img{
     white-space: nowrap;
 }
 
+.fa-heart:active{
+    animation: clicked 450ms ease;
+}
+
+@keyframes clicked {
+    0% {
+        scale: 1;
+        opacity: 1;
+    }
+    100% {
+        scale: 2;
+        opacity: 0.3;
+    }
+}
 
 /***********Price & Likes***********/
 
