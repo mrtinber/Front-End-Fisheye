@@ -13,8 +13,8 @@ export function generateLightBox(createdMedia){
     const cardTitles = document.querySelectorAll(".photographer_media h3");
     const cardMedia = document.querySelectorAll(".photographer_media img, .photographer_media video");
     
-    console.log(cardMedia);
-    console.log(cardTitles);
+    // console.log(cardMedia);
+    // console.log(cardTitles);
 
     let currentImageIndex = 0; // Indice de l'image actuellement affichée
 

@@ -105,37 +105,6 @@ async function init() {
 
 init();
 
-///////////////Filtres///////////////
-const filterSelect = document.getElementById("filter_select");
-const filterText = document.getElementById("filter_text");
-const filterArrow = document.querySelector(".filterbar i");
-const filterOptions = document.getElementById("filter_options");
-const filterChoice = document.querySelectorAll(".filter_choice");
-
-filterSelect.addEventListener("click", () => {
-    if (filterOptions.classList.contains("show")){
-        filterArrow.style.rotate = "0deg";
-    } else {
-        filterArrow.style.rotate = "-180deg";
-    }
-    filterOptions.classList.toggle("show");
-})
-
-window.onclick = function (e) {
-    if (
-        e.target.id !== "filter_select"
-    ){
-        filterOptions.classList.remove("show");
-        filterArrow.style.rotate = "0deg";
-    }
-}
-
-filterChoice.forEach(choice => {
-    choice.addEventListener("click", () => {
-        filterText.innerText = choice.innerText;
-    });
-});
-
 // Tri des médias grâce aux filtres
 function filters(photographers, media) {
     const filterPopularity = document.getElementById("filter_popularity");
@@ -158,11 +127,29 @@ function filters(photographers, media) {
         });
     });
 
+    filterPopularity.addEventListener("keydown", e =>{
+        const key = e.key
+        if (key === "Enter"){
+            applyFilter(function(a, b) {
+                return b.likes - a.likes;
+            });
+        }
+    })
+
     filterDate.addEventListener("click", function() {
         applyFilter(function(a, b) {
             return new Date(b.date) - new Date(a.date);
         });
     });
+
+    filterDate.addEventListener("keydown", e =>{
+        const key = e.key
+        if (key === "Enter"){
+            applyFilter(function(a, b) {
+                return new Date(b.date) - new Date(a.date);
+            });
+        }
+    })
 
     filterTitle.addEventListener("click", function() {
         applyFilter(function(a, b) {
@@ -175,4 +162,19 @@ function filters(photographers, media) {
             return 0;
         });
     });
+
+    filterTitle.addEventListener("keydown", e =>{
+        const key = e.key
+        if (key === "Enter"){
+            applyFilter(function(a, b) {
+                if (a.title < b.title) {
+                    return -1;
+                }
+                if (a.title > b.title) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
+    })
 }
