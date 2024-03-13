@@ -27,6 +27,9 @@ function toggleDropDown (){
     } else {
         filterOptions.classList.remove("show");
         filterArrow.style.rotate = "0deg";
+        filterChoice.forEach(choice => {
+          choice.removeAttribute("tabindex");
+        });
     }
 }
 

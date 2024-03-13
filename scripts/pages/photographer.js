@@ -34,6 +34,15 @@ async function displayData(photographers) {
     //Ajout du nom dans la modal
     const modalHeader = document.querySelector(".modal header h2");
     modalHeader.innerHTML = `Contactez-moi <br>${photographer.name}`;   
+
+    //Transformation du h2 en h1 focusable
+    const titleName = document.querySelector("h2");
+    const newH1 = document.createElement("h1");
+    newH1.textContent = titleName.textContent;
+    newH1.setAttribute("aria-label", "Page du photographe : " + newH1.textContent);
+    titleName.parentNode.replaceChild(newH1, titleName);
+    
+    console.log(newH1); 
 }
 
 function generateMedia(photographers, media) {
@@ -69,7 +78,7 @@ function generateLikes(createdMedia){
     divPrice.appendChild(photographerLikes);
     const photographerPrice = document.getElementById("dailyPrice");
     divPrice.appendChild(photographerPrice);
-    photographerLikes.innerHTML = `<p id="total_likes">${totalLikes} <i class="fa-solid fa-heart"></i></p>`
+    photographerLikes.innerHTML = `<p id="total_likes">${totalLikes} <i class="fa-solid fa-heart"></i></p>`;
 
     console.log(createdMedia);
     console.log("Total Likes:", totalLikes);
@@ -85,7 +94,7 @@ export function updateTotalLikes() {
     });
     const photographerLikes = document.getElementById("total_likes");
     if (photographerLikes) {
-        photographerLikes.innerHTML = `<p id="total_likes">${totalLikes} <i class="fa-solid fa-heart"></i></p>`
+        photographerLikes.innerHTML = `<p id="total_likes">${totalLikes} <i class="fa-solid fa-heart"></i></p>`;
     }
 }
 
