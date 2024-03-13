@@ -11,15 +11,21 @@
 </head>
 
 <body>
+  <!--Header-->
   <header>
     <a href="index.html" class="logo">
       <img src="assets/images/logo.png" alt="Fisheye logo" aria-label="Fisheye home page" />
     </a>
   </header>
+
+  <!--Main-->
   <main id="main">
+    <!--Informations sur le photographe sélectionné-->
     <div class="photographer_header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
+
+    <!--Barre de filtres avec bouton-->
     <div class="filterbar">
       <p>Trier par</p>
       <div id="filter_select" aria-label="Sélectionner un filtre" aria-haspopup="true" aria-expanded="false"
@@ -33,18 +39,26 @@
         </ul>
       </div>
     </div>
+
+    <!--Ensemble des médias du photographe-->
     <div class="photographer_media">
     </div>
+
+    <!--Onglet affichant le nombre total de likes et le prix-->
     <div class="photographer_price" tabindex="0">
     </div>
+
+    <!--Lightbox pour afficher le média sélectionné en plus grand-->
     <div id="lightbox" aria-modal="true" role="dialog">
     </div>
   </main>
+
+  <!--Modale de contact avec formulaire-->
   <div id="contact_modal" aria-modal="true" role="dialog">
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Close contact form" tabindex="0"/>
+        <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Close contact form" tabindex="0" />
       </header>
       <form>
         <div>
@@ -61,6 +75,8 @@
       </form>
     </div>
   </div>
+
+  <!--Javascript-->
   <script type="module" src="scripts/pages/photographer.js"></script>
   <script src="scripts/templates/photographer.js"></script>
   <!-- <script src="scripts/factories/photographerFactory.js"></script> -->

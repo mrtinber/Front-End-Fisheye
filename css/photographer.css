@@ -3,11 +3,11 @@
 }
 
 /***********Header***********/
-header{
+header {
     margin: 20px 0;
 }
 
-header img{
+header img {
     height: 50px;
 }
 
@@ -19,7 +19,7 @@ header img{
     height: 300px;
     margin: 0 100px;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: space-around;
 }
 
@@ -32,7 +32,7 @@ header img{
     padding: 50px;
 }
 
-.photographer_header article a{
+.photographer_header article a {
     display: block;
 }
 
@@ -52,21 +52,21 @@ header img{
     margin: 0;
 }
 
-.photographer_header article h3{
+.photographer_header article h3 {
     color: #901C1C;
     font-size: 24px;
     font-weight: 400;
     margin: 0;
 }
 
-.photographer_header article h4{
+.photographer_header article h4 {
     color: black;
     font-size: 18px;
     font-weight: 400;
     margin: 0;
 }
 
-.photographer_header article p{
+.photographer_header article p {
     display: none;
 }
 
@@ -93,7 +93,8 @@ header img{
     transition: background-color 300ms ease;
 }
 
-.contact_button:hover, .contact_button:focus {
+.contact_button:hover,
+.contact_button:focus {
     background-color: #DB8876;
     color: black;
 }
@@ -101,7 +102,7 @@ header img{
 
 /***********Filters***********/
 
-.filterbar{
+.filterbar {
     margin: 10px 100px;
     display: flex;
     flex-direction: row;
@@ -110,11 +111,12 @@ header img{
     font-weight: 700;
 }
 
-.filterbar i{
+.filterbar i {
     transition: rotate 0.5s ease;
 }
 
-#filter_select, #fruitSelect{
+#filter_select,
+#fruitSelect {
     background-color: #901C1C;
     border-radius: 5px;
     width: 130px;
@@ -137,7 +139,7 @@ header img{
     color: black;
 } */
 
-#filter_options{
+#filter_options {
     margin: 0;
     width: 130px;
     background-color: #901C1C;
@@ -161,11 +163,11 @@ header img{
     transition: max-height 0.5s;
 }
 
-#filter_options.show{
+#filter_options.show {
     max-height: 300px;
 }
 
-#filter_options li{
+#filter_options li {
     padding: 14px 0;
     border-top: 2px solid white;
     /* position:relative; */
@@ -184,8 +186,8 @@ header img{
 
 /***********Media***********/
 
-.photographer_media{
-    display: flex; 
+.photographer_media {
+    display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 60px;
@@ -197,7 +199,8 @@ header img{
     margin-bottom: -40px;
 }
 
-.photographer_media img, .photographer_media video{
+.photographer_media img,
+.photographer_media video {
     width: 100%;
     height: 300px;
     border-radius: 5px;
@@ -206,11 +209,12 @@ header img{
     transition: transform 300ms ease;
 }
 
-.photographer_media img:hover, .photographer_media video:hover{
+.photographer_media img:hover,
+.photographer_media video:hover {
     transform: scale(1.03);
 }
 
-.photographer_media article div{
+.photographer_media article div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -219,7 +223,7 @@ header img{
     gap: 10px;
 }
 
-.photographer_media article div h3{
+.photographer_media article div h3 {
     color: #901C1C;
     font-size: 24px;
     font-weight: 400;
@@ -228,7 +232,8 @@ header img{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.photographer_media article div p{
+
+.photographer_media article div p {
     color: #901C1C;
     font-size: 24px;
     font-weight: 600;
@@ -236,12 +241,12 @@ header img{
     white-space: nowrap;
 }
 
-.photographer_media .fa-heart{
+.photographer_media .fa-heart {
     opacity: 0.5;
     cursor: pointer;
 }
 
-.fa-heart:active{
+.fa-heart:active {
     animation: clicked 450ms ease;
 }
 
@@ -250,6 +255,7 @@ header img{
         scale: 1;
         opacity: 1;
     }
+
     100% {
         scale: 2;
         opacity: 0.3;
@@ -258,7 +264,7 @@ header img{
 
 /***********Price & Likes***********/
 
-.photographer_price{
+.photographer_price {
     background: #DB8876;
     border-radius: 5px;
     width: 376px;
@@ -273,12 +279,12 @@ header img{
     z-index: 250;
 }
 
-.photographer_price div{
+.photographer_price div {
     display: flex;
     flex-direction: row;
 }
 
-.photographer_price p{
+.photographer_price p {
     color: black;
     font-size: 24px;
     font-weight: 600;
@@ -352,6 +358,7 @@ form input {
     border-radius: 5px;
     font-size: 36px;
 }
+
 form textarea {
     width: 100%;
     height: 170px;
@@ -360,7 +367,7 @@ form textarea {
     font-size: 36px;
 }
 
-form .submit_button{
+form .submit_button {
     font-size: 18px;
     font-weight: bold;
     color: white;
@@ -375,7 +382,7 @@ form .submit_button{
 
 /***********Lightbox***********/
 
-#lightbox{
+#lightbox {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -385,40 +392,42 @@ form .submit_button{
     display: none;
 }
 
-#lightbox.active{
+#lightbox.active {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.lightbox_content{
+.lightbox_content {
     position: relative;
     display: flex;
     align-items: center;
     gap: 30px;
 }
 
-.lightbox_content img{
+.lightbox_content img {
     height: 800px;
     border-radius: 5px;
 }
-.lightbox_content video{
+
+.lightbox_content video {
     width: 1200px;
     border-radius: 5px;
 }
 
-.lightbox_content h3{
+.lightbox_content h3 {
     color: #901C1C;
     font-size: 24px;
     font-weight: 400;
     margin: 6px 0 0;
 }
 
-#lightbox.active i{
+#lightbox.active i {
     color: #901C1C;
     font-size: 72px;
 }
-.lightbox_content .fa-xmark{
+
+.lightbox_content .fa-xmark {
     position: absolute;
     right: 0;
     top: 0;

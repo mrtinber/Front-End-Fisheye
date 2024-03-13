@@ -1,14 +1,14 @@
 const lightBox = document.getElementById("lightbox");
 
-function displayLightbox(){
+function displayLightbox() {
     lightBox.classList.add("active");
 }
 
-function closeLightbox(){
+function closeLightbox() {
     lightBox.classList.remove("active");
 }
 
-export function generateLightBox(createdMedia){ 
+export function generateLightBox(createdMedia) {
 
     const cardMedia = document.querySelectorAll(".photographer_media img, .photographer_media video");
 
@@ -21,14 +21,14 @@ export function generateLightBox(createdMedia){
                 displayLightbox();
                 displayImage(currentImageIndex);
             });
-            
+
             picture.addEventListener("keydown", e => {
                 const key = e.key
 
-                if(key === "Enter"){
-                currentImageIndex = index;
-                displayLightbox();
-                displayImage(currentImageIndex);
+                if (key === "Enter") {
+                    currentImageIndex = index;
+                    displayLightbox();
+                    displayImage(currentImageIndex);
                 }
             });
         });
@@ -57,16 +57,16 @@ export function generateLightBox(createdMedia){
         if (mediaElement) {
             mediaElement.focus();
         }
-        
+
         // Ajouter un écouteur d'événements pour détecter le clic sur "avant" ou "après"
         const leftArrow = document.querySelector(".fa-chevron-left")
         const rightArrow = document.querySelector(".fa-chevron-right")
-        
+
         rightArrow.addEventListener("click", () => {
             currentImageIndex = (currentImageIndex + 1) % cardMedia.length;
             displayImage(currentImageIndex)
         });
-        leftArrow.addEventListener("click", ()=> {
+        leftArrow.addEventListener("click", () => {
             currentImageIndex = (currentImageIndex - 1 + cardMedia.length) % cardMedia.length;
             displayImage(currentImageIndex);
         });
@@ -78,23 +78,23 @@ export function generateLightBox(createdMedia){
     }
 
     lightBox.addEventListener("click", e => {
-        if(e.target !== e.currentTarget) return
+        if (e.target !== e.currentTarget) return
         closeLightbox();
     });
-    
+
     // Ajouter un écouteur d'événements pour détecter l'appui sur la touche "Escape"
     document.addEventListener('keydown', e => {
         const key = e.key;
-        
+
         if (key === "Escape") {
             closeLightbox();
         }
     });
-    
+
     // Ajouter un écouteur d'événements pour détecter l'appui sur les touches "avant" ou "après"
     document.addEventListener("keydown", e => {
         const key = e.key;
-        
+
         if (key === "ArrowRight") { // Touche "avant"
             currentImageIndex = (currentImageIndex + 1) % cardMedia.length;
             displayImage(currentImageIndex);

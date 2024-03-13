@@ -1,6 +1,6 @@
 function displayModal() {
     const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+    modal.style.display = "block";
 
     const surnameInput = document.getElementById("surname");
     surnameInput.focus();
@@ -13,7 +13,7 @@ function closeModal() {
 
 
 btnSubmit = document.querySelector(".submit_button")
-btnSubmit.addEventListener("click", function(event){
+btnSubmit.addEventListener("click", function (event) {
     event.preventDefault();
 
     const formSurname = document.getElementById("surname");

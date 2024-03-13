@@ -29,7 +29,7 @@ export class PhotographerFactory {
 
         // Recherche des médias avec l'ID du photographe correspondant
         const mediaId = this.media.photographerId === parseInt(photographerID);
-    
+
         if (mediaId) { // Vérifie si des médias ont été trouvés
             const mediaCard = document.createElement("article");
             const img = document.createElement("img");
@@ -58,12 +58,12 @@ export class PhotographerFactory {
             mediaCard.appendChild(mediaInfos);
             mediaInfos.appendChild(mediaTitle);
             mediaInfos.appendChild(mediaLikes);
-        
+
             // Stocker une référence aux données du média
             const mediaData = this.media;
 
             //Incrémentation des likes au clic
-            mediaLikes.addEventListener("click", function() {
+            mediaLikes.addEventListener("click", function () {
                 if (mediaData.liked) {
                     mediaData.likes--; // Diminuer les likes si l'utilisateur a déjà aimé
                     mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour liker" style="opacity: 0.5;" tabindex="0"></i>`;
@@ -82,7 +82,7 @@ export class PhotographerFactory {
             //Incrémentation des likes avec la touche Entrée
             mediaLikes.addEventListener("keydown", e => {
                 const key = e.key;
-                if(key === "Enter"){
+                if (key === "Enter") {
                     if (mediaData.liked) {
                         mediaData.likes--; // Diminuer les likes si l'utilisateur a déjà aimé
                         mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour liker" style="opacity: 0.5;" tabindex="0"></i>`;
@@ -98,7 +98,7 @@ export class PhotographerFactory {
                     updateTotalLikes();
                 }
             });
-        
+
             return img;
         }
     }
@@ -109,7 +109,7 @@ export class PhotographerFactory {
         let photographerID = params.get("id");
 
         const photographersMedia = document.querySelector(".photographer_media");
-    
+
         // Recherche des médias avec l'ID du photographe correspondant
         const mediaId = this.media.photographerId === parseInt(photographerID);
 
@@ -143,9 +143,9 @@ export class PhotographerFactory {
 
             // Stocker une référence aux données du média
             const mediaData = this.media;
-            
+
             //Incrémentation des likes au clic
-            mediaLikes.addEventListener("click", function() {
+            mediaLikes.addEventListener("click", function () {
                 if (mediaData.liked) {
                     mediaData.likes--; // Diminuer les likes si l'utilisateur a déjà aimé
                     mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour liker" style="opacity: 0.5;" tabindex="0"></i>`;
@@ -160,11 +160,11 @@ export class PhotographerFactory {
 
                 updateTotalLikes();
             });
-           
+
             //Incrémentation des likes avec la touche Entrée
             mediaLikes.addEventListener("keydown", e => {
                 const key = e.key;
-                if(key === "Enter"){
+                if (key === "Enter") {
                     if (mediaData.liked) {
                         mediaData.likes--; // Diminuer les likes si l'utilisateur a déjà aimé
                         mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour liker" style="opacity: 0.5;" tabindex="0"></i>`;

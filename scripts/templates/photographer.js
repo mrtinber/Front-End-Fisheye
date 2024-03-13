@@ -26,7 +26,7 @@ function photographerTemplate(data) {
         // h2.setAttribute("aria-hidden", "true"); // Cacher pour les lecteurs d'écran
         // div.appendChild(spanH2);
         h2.setAttribute("aria-label", `Nom du photographe : ${name}`);
-    
+
         // const spanH3 = document.createElement('span');
         // spanH3.classList.add('sr-only');
         // spanH3.textContent = `Ville et pays : ${city}, ${country}`;
@@ -36,7 +36,7 @@ function photographerTemplate(data) {
         // h3.setAttribute("aria-hidden", "true"); // Cacher pour les lecteurs d'écran
         // div.appendChild(spanH3);
         h3.setAttribute("aria-label", `Ville et pays : ${city}, ${country}`);
-    
+
         // const spanH4 = document.createElement('span');
         // spanH4.classList.add('sr-only');
         // spanH4.textContent = `Slogan : ${tagline}`;
@@ -46,7 +46,7 @@ function photographerTemplate(data) {
         // h4.setAttribute("aria-hidden", "true"); // Cacher pour les lecteurs d'écran
         // div.appendChild(spanH4);
         h4.setAttribute("aria-label", `Slogan : ${tagline}`);
-    
+
         // const spanP = document.createElement('span');
         // spanP.classList.add('sr-only');
         // spanP.textContent = `Prix par jour : ${price} euros`;
@@ -57,7 +57,7 @@ function photographerTemplate(data) {
         // p.setAttribute("aria-hidden", "true");
         // div.appendChild(spanP);
         p.setAttribute("aria-label", `Prix par jour : ${price} euros`);
-    
+
         // Rattachement au code HTML
         article.appendChild(a);
         article.appendChild(div);
@@ -68,6 +68,6 @@ function photographerTemplate(data) {
         div.appendChild(p);
         return article;
     }
-    
+
     return { name, picture, id, getUserCardDOM }
 }

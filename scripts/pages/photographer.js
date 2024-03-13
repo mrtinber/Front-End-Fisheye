@@ -9,7 +9,7 @@ async function getPhotographers() {
 
     // Convertir la réponse en JSON
     const photographersData = await response.json();
-    
+
     // Retourner les données des photographes
     return photographersData;
 }
@@ -33,7 +33,7 @@ async function displayData(photographers) {
 
     //Ajout du nom dans la modal
     const modalHeader = document.querySelector(".modal header h2");
-    modalHeader.innerHTML = `Contactez-moi <br>${photographer.name}`;   
+    modalHeader.innerHTML = `Contactez-moi <br>${photographer.name}`;
 
     //Transformation du h2 en h1 focusable
     const titleName = document.querySelector("h2");
@@ -41,8 +41,8 @@ async function displayData(photographers) {
     newH1.textContent = titleName.textContent;
     newH1.setAttribute("aria-label", "Page du photographe : " + newH1.textContent);
     titleName.parentNode.replaceChild(newH1, titleName);
-    
-    console.log(newH1); 
+
+    console.log(newH1);
 }
 
 function generateMedia(photographers, media) {
@@ -62,16 +62,16 @@ function generateMedia(photographers, media) {
 }
 
 
-function generateLikes(createdMedia){
+function generateLikes(createdMedia) {
     // Somme des likes pour les éléments créés
     let totalLikes = 0;
-    createdMedia.forEach(function(unit) {
+    createdMedia.forEach(function (unit) {
         const likes = unit.getAttribute('data-likes');
         if (likes) {
             totalLikes += parseInt(likes);
         }
     });
-    
+
     //Création de l'onglet flottant avec le prix et le total de likes
     const divPrice = document.querySelector(".photographer_price");
     const photographerLikes = document.createElement("div");
@@ -86,7 +86,7 @@ function generateLikes(createdMedia){
 
 export function updateTotalLikes() {
     let totalLikes = 0;
-    createdMedia.forEach(function(unit) {
+    createdMedia.forEach(function (unit) {
         const likes = unit.getAttribute('data-likes');
         if (likes) {
             totalLikes += parseInt(likes);
@@ -103,8 +103,8 @@ async function init() {
     const { photographers, media } = await getPhotographers();
     displayData(photographers);
 
-    generateMedia(photographers, media); 
-    generateLikes(createdMedia); 
+    generateMedia(photographers, media);
+    generateLikes(createdMedia);
 
     filters(photographers, media);
 }
@@ -120,45 +120,45 @@ function filters(photographers, media) {
 
     function applyFilter(sortFunction) {
         media.sort(sortFunction);
-        console.log({media});
-        console.log({photographersMedia});
+        console.log({ media });
+        console.log({ photographersMedia });
         photographersMedia.innerHTML = "";
         generateMedia(photographers, media);
         generateLightBox(createdMedia);
     }
 
-    filterPopularity.addEventListener("click", function() {
-        applyFilter(function(a, b) {
+    filterPopularity.addEventListener("click", function () {
+        applyFilter(function (a, b) {
             return b.likes - a.likes;
         });
     });
 
-    filterPopularity.addEventListener("keydown", e =>{
+    filterPopularity.addEventListener("keydown", e => {
         const key = e.key
-        if (key === "Enter"){
-            applyFilter(function(a, b) {
+        if (key === "Enter") {
+            applyFilter(function (a, b) {
                 return b.likes - a.likes;
             });
         }
     })
 
-    filterDate.addEventListener("click", function() {
-        applyFilter(function(a, b) {
+    filterDate.addEventListener("click", function () {
+        applyFilter(function (a, b) {
             return new Date(b.date) - new Date(a.date);
         });
     });
 
-    filterDate.addEventListener("keydown", e =>{
+    filterDate.addEventListener("keydown", e => {
         const key = e.key
-        if (key === "Enter"){
-            applyFilter(function(a, b) {
+        if (key === "Enter") {
+            applyFilter(function (a, b) {
                 return new Date(b.date) - new Date(a.date);
             });
         }
     })
 
-    filterTitle.addEventListener("click", function() {
-        applyFilter(function(a, b) {
+    filterTitle.addEventListener("click", function () {
+        applyFilter(function (a, b) {
             if (a.title < b.title) {
                 return -1;
             }
@@ -169,10 +169,10 @@ function filters(photographers, media) {
         });
     });
 
-    filterTitle.addEventListener("keydown", e =>{
+    filterTitle.addEventListener("keydown", e => {
         const key = e.key
-        if (key === "Enter"){
-            applyFilter(function(a, b) {
+        if (key === "Enter") {
+            applyFilter(function (a, b) {
                 if (a.title < b.title) {
                     return -1;
                 }
