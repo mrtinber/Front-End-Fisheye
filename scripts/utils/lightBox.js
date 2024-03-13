@@ -39,13 +39,13 @@ export function generateLightBox(createdMedia){
 
         const displayedImage = `
             <div class="lightbox_content" aria-label="image close-up view">
-                <i class="fa-solid fa-chevron-left" aria-label="previous image" tabindex="0"></i>
+                <i class="fa-solid fa-chevron-left" aria-label="Image précédente" tabindex="0"></i>
                 <div>
                     ${mediaType === "video" ? `<video src="${createdMedia[index].src}" controls></video>` : createdMedia[index].outerHTML}
                     <h3 tabindex="0">${createdMedia[index].textContent}</h3>
                 </div>
-                <i class="fa-solid fa-chevron-right" aria-label="next image" tabindex="0"></i>
-                <i class="fa-solid fa-xmark" aria-label="close dialog" tabindex="0"></i>
+                <i class="fa-solid fa-chevron-right" aria-label="Image suivante" tabindex="0"></i>
+                <i class="fa-solid fa-xmark" aria-label="Fermer l'aperçu" tabindex="0"></i>
                 </div>`;
         while (lightBox.firstChild) {
             lightBox.removeChild(lightBox.firstChild);
@@ -84,9 +84,9 @@ export function generateLightBox(createdMedia){
     
     // Ajouter un écouteur d'événements pour détecter l'appui sur la touche "Escape"
     document.addEventListener('keydown', e => {
-        const keyCode = e.keyCode ? e.keyCode : e.which;
+        const key = e.key;
         
-        if (keyCode === 27) {
+        if (key === "Escape") {
             closeLightbox();
         }
     });

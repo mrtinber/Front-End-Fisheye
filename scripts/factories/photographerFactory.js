@@ -1,3 +1,5 @@
+import { updateTotalLikes } from "../pages/photographer.js";
+
 export class PhotographerFactory {
     constructor(data, media) {
         this.data = data;
@@ -35,8 +37,8 @@ export class PhotographerFactory {
             img.setAttribute("data-likes", `${this.media.likes}`);
             // img.setAttribute("aria-label", `Cliquez pour agrandir`);
             img.setAttribute("tabindex", "0");
-            img.setAttribute("alt", `${this.media.alt}`);
-            img.setAttribute("title", `${this.media.alt}`);
+            img.setAttribute("alt", `${this.media.alt}, cliquez pour agrandir`);
+            // img.setAttribute("title", `${this.media.alt}`);
 
             //Création d'un span pour les lecteurs d'écrans seulement
             img.setAttribute("aria-describedby", "imageDescription");
@@ -73,8 +75,10 @@ export class PhotographerFactory {
                 mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
                 console.log(mediaData.liked);
 
-                mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart"></i>`;
+                mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour liker" tabindex="0"></i>`;
                 img.setAttribute("data-likes", `${mediaData.likes}`);
+
+                updateTotalLikes();
             });
 
             //Incrémentation des likes avec la touche Entrée
@@ -89,11 +93,13 @@ export class PhotographerFactory {
                     mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
                     console.log(mediaData.liked);
 
-                    mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart" tabindex="0"></i>`;
+                    mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour liker" tabindex="0"></i>`;
                     img.setAttribute("data-likes", `${mediaData.likes}`);
+
+                    updateTotalLikes();
                 }
             });
-
+        
             return img;
         }
     }
@@ -115,6 +121,7 @@ export class PhotographerFactory {
             video.setAttribute("data-likes", `${this.media.likes}`)
             video.setAttribute("tabindex", "0");
             video.setAttribute("alt", `${this.media.alt}`);
+            video.setAttribute("title", `${this.media.alt}, cliquez pour agrandir`);
 
             //Création d'un span pour les lecteurs d'écrans seulement
             video.setAttribute("aria-describedby", "imageDescription");
@@ -128,7 +135,7 @@ export class PhotographerFactory {
             const mediaTitle = document.createElement("h3");
             mediaTitle.innerText = `${this.media.title}`;
             const mediaLikes = document.createElement("p");
-            mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart" tabindex="0"></i>`;
+            mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour liker" tabindex="0"></i>`;
             photographersMedia.appendChild(mediaCard);
             mediaCard.appendChild(video);
             mediaCard.appendChild(mediaInfos);
@@ -148,10 +155,31 @@ export class PhotographerFactory {
                 mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
                 console.log(mediaData.liked);
 
-                mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart"></i>`;
+                mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour liker" tabindex="0"></i>`;
                 video.setAttribute("data-likes", `${mediaData.likes}`);
+
+                updateTotalLikes();
             });
            
+            //Incrémentation des likes avec la touche Entrée
+            mediaLikes.addEventListener("keydown", e => {
+                const key = e.key;
+                if(key === "Enter"){
+                    if (mediaData.liked) {
+                        mediaData.likes--; // Diminuer les likes si l'utilisateur a déjà aimé
+                    } else {
+                        mediaData.likes++; // Augmenter les likes si l'utilisateur n'a pas encore aimé
+                    }
+                    mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
+                    console.log(mediaData.liked);
+
+                    mediaLikes.innerHTML = `${mediaData.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour liker" tabindex="0"></i>`;
+                    img.setAttribute("data-likes", `${mediaData.likes}`);
+
+                    updateTotalLikes();
+                }
+            });
+
             return video;
         }
     }
