@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/9f1e376094.js" crossorigin="anonymous"></script>
-  <title>Fisheye - photographe </title>
+  <title>Fisheye - Photographe </title>
 </head>
 
 <body>
@@ -22,12 +22,12 @@
   <!--Main-->
   <main id="main">
     <!--Informations sur le photographe sélectionné-->
-    <div class="photographer_header">
+    <section class="photographer_header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-    </div>
+    </section>
 
-    <!--Barre de filtres avec bouton-->
-    <div class="filterbar">
+    <!--Barre de filtres avec bouton déroulant-->
+    <nav class="filterbar">
       <p>Trier par</p>
       <div id="filter_select" aria-label="Sélectionner un filtre" aria-haspopup="true" aria-expanded="false"
         tabindex="0">
@@ -39,23 +39,23 @@
           <li class="filter_choice" id="filter_title">Titre</li>
         </ul>
       </div>
-    </div>
+    </nav>
 
     <!--Ensemble des médias du photographe-->
-    <div class="photographer_media">
-    </div>
+    <section class="photographer_media">
+    </section>
 
     <!--Onglet affichant le nombre total de likes et le prix-->
-    <div class="photographer_price" tabindex="0">
-    </div>
+    <aside class="photographer_price" tabindex="0">
+    </aside>
 
     <!--Lightbox pour afficher le média sélectionné en plus grand-->
-    <div id="lightbox" aria-modal="true" role="dialog">
-    </div>
+    <section id="lightbox" aria-modal="true" role="dialog">
+    </section>
   </main>
 
   <!--Modale de contact avec formulaire-->
-  <div id="contact_modal" aria-modal="true" role="dialog">
+  <section id="contact_modal" aria-modal="true" role="dialog">
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
@@ -75,7 +75,7 @@
         <input class="submit_button" type="submit" value="Envoyer" />
       </form>
     </div>
-  </div>
+  </section>
 
   <!--Javascript-->
   <script type="module" src="scripts/pages/photographer.js"></script>

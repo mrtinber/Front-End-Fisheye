@@ -76,9 +76,9 @@ export class PhotographerFactory {
                 }
                 mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
                 console.log(mediaData.liked);
-
+                
                 img.setAttribute("data-likes", `${mediaData.likes}`);
-
+                
                 updateTotalLikes();
             });
 
@@ -179,7 +179,7 @@ export class PhotographerFactory {
                     mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
                     console.log(mediaData.liked);
 
-                    img.setAttribute("data-likes", `${mediaData.likes}`);
+                    video.setAttribute("data-likes", `${mediaData.likes}`);
 
                     updateTotalLikes();
                 }

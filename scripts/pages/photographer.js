@@ -22,7 +22,7 @@ async function displayData(photographers) {
     //Récupération de l'ID dans l'URL
     let params = new URL(document.location).searchParams;
     let photographerID = params.get("id");
-    console.log(photographerID);
+    console.log("ID du photographe:", photographerID);
 
     // Recherche du photographe avec l'ID correspondant
     const photographer = photographers.find(photographer => photographer.id === parseInt(photographerID));
@@ -47,8 +47,6 @@ async function displayData(photographers) {
     titleName.parentNode.replaceChild(newH1, titleName);
     // Insérer newH1 au début de photographerInfos
     photographerInfos.insertBefore(newH1, photographerInfos.firstChild);
-
-    console.log(newH1);
 }
 
 function generateMedia(photographers, media) {
@@ -71,6 +69,7 @@ function generateMedia(photographers, media) {
 function generateLikes(createdMedia) {
     // Somme des likes pour les éléments créés
     let totalLikes = 0;
+
     createdMedia.forEach(function (unit) {
         const likes = unit.getAttribute("data-likes");
         if (likes) {
@@ -87,7 +86,7 @@ function generateLikes(createdMedia) {
     photographerLikes.innerHTML = `<p id="total_likes">${totalLikes} <i class="fa-solid fa-heart"></i></p>`;
 
     console.log(createdMedia);
-    console.log("Total Likes:", totalLikes);
+    console.log("Total de likes:", totalLikes);
 }
 
 export function updateTotalLikes() {
@@ -125,6 +124,7 @@ function filters(photographers, media) {
     const photographersMedia = document.querySelector(".photographer_media");
 
     function applyFilter(sortFunction) {
+        createdMedia = []; //Réinitialisation de createdMedia pour éviter le cumul du total de likes
         media.sort(sortFunction);
         console.log({ media });
         console.log({ photographersMedia });
