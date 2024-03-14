@@ -37,6 +37,11 @@ export function generateLightBox(createdMedia) {
     function displayImage(index) {
         const mediaType = createdMedia[index].tagName.toLowerCase(); // Récupérer le type de média (img ou video)
 
+        // Retirer ", cliquez pour agrandir" du texte de l'attribut alt
+        const altText = createdMedia[index].alt;
+        const newAltText = altText.replace(", cliquez pour agrandir", "");
+        createdMedia[index].alt = newAltText;
+
         const displayedImage = `
             <div class="lightbox_content" aria-label="image close-up view">
                 <i class="fa-solid fa-chevron-left" aria-label="Image précédente" tabindex="0"></i>
@@ -88,6 +93,7 @@ export function generateLightBox(createdMedia) {
 
         if (key === "Escape") {
             closeLightbox();
+            createdMedia[0].focus();
         }
     });
 

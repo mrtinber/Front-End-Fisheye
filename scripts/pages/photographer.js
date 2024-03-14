@@ -35,12 +35,15 @@ async function displayData(photographers) {
     const modalHeader = document.querySelector(".modal header h2");
     modalHeader.innerHTML = `Contactez-moi <br>${photographer.name}`;
 
-    //Transformation du h2 en h1 focusable
+    //Transformation du h2 en h1
     const titleName = document.querySelector("h2");
     const newH1 = document.createElement("h1");
+    const photographerInfos = document.querySelector(".photographerInfos")
     newH1.textContent = titleName.textContent;
     newH1.setAttribute("aria-label", "Page du photographe : " + newH1.textContent);
     titleName.parentNode.replaceChild(newH1, titleName);
+    // Insérer newH1 au début de photographerInfos
+    photographerInfos.insertBefore(newH1, photographerInfos.firstChild);
 
     console.log(newH1);
 }

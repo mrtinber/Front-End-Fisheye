@@ -2,15 +2,6 @@
     display: none;
 }
 
-/***********Header***********/
-header {
-    margin: 20px 0;
-}
-
-header img {
-    height: 50px;
-}
-
 /***********Informations sur le photographe***********/
 
 .photographer_header {
@@ -33,7 +24,9 @@ header img {
 }
 
 .photographer_header article a {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .photographer_header article div {
@@ -52,14 +45,14 @@ header img {
     margin: 0;
 }
 
-.photographer_header article h3 {
+.location_photographer {
     color: #901C1C;
     font-size: 24px;
     font-weight: 400;
     margin: 0;
 }
 
-.photographer_header article h4 {
+.tagline_photographer {
     color: black;
     font-size: 18px;
     font-weight: 400;
@@ -75,7 +68,6 @@ header img {
     width: 200px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
 }
 
 .contact_button {
