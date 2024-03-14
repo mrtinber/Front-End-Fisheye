@@ -1,6 +1,9 @@
+/* eslint-disable linebreak-style */
+import { photographerTemplate } from "../templates/photographer.js";
+
 async function getPhotographers() {
     // Charger le fichier JSON
-    const response = await fetch('./data/photographers.json');
+    const response = await fetch("./data/photographers.json");
 
     // Convertir la réponse en JSON
     const photographersData = await response.json();

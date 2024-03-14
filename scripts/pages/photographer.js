@@ -1,11 +1,13 @@
+/* eslint-disable linebreak-style */
 import { PhotographerFactory } from "../factories/photographerFactory.js";
 import { generateLightBox } from "../utils/lightbox.js";
+import { photographerTemplate } from "../templates/photographer.js";
 
 let createdMedia = [];
 
 async function getPhotographers() {
     // Charger le fichier JSON
-    const response = await fetch('./data/photographers.json');
+    const response = await fetch("./data/photographers.json");
 
     // Convertir la réponse en JSON
     const photographersData = await response.json();
@@ -26,6 +28,7 @@ async function displayData(photographers) {
     const photographer = photographers.find(photographer => photographer.id === parseInt(photographerID));
 
     if (photographer) {
+        // eslint-disable-next-line no-undef
         const photographerModel = photographerTemplate(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
         photographersHeader.appendChild(userCardDOM);
@@ -38,7 +41,7 @@ async function displayData(photographers) {
     //Transformation du h2 en h1
     const titleName = document.querySelector("h2");
     const newH1 = document.createElement("h1");
-    const photographerInfos = document.querySelector(".photographerInfos")
+    const photographerInfos = document.querySelector(".photographerInfos");
     newH1.textContent = titleName.textContent;
     newH1.setAttribute("aria-label", "Page du photographe : " + newH1.textContent);
     titleName.parentNode.replaceChild(newH1, titleName);
@@ -69,7 +72,7 @@ function generateLikes(createdMedia) {
     // Somme des likes pour les éléments créés
     let totalLikes = 0;
     createdMedia.forEach(function (unit) {
-        const likes = unit.getAttribute('data-likes');
+        const likes = unit.getAttribute("data-likes");
         if (likes) {
             totalLikes += parseInt(likes);
         }
@@ -90,7 +93,7 @@ function generateLikes(createdMedia) {
 export function updateTotalLikes() {
     let totalLikes = 0;
     createdMedia.forEach(function (unit) {
-        const likes = unit.getAttribute('data-likes');
+        const likes = unit.getAttribute("data-likes");
         if (likes) {
             totalLikes += parseInt(likes);
         }
@@ -137,13 +140,13 @@ function filters(photographers, media) {
     });
 
     filterPopularity.addEventListener("keydown", e => {
-        const key = e.key
+        const key = e.key;
         if (key === "Enter") {
             applyFilter(function (a, b) {
                 return b.likes - a.likes;
             });
         }
-    })
+    });
 
     filterDate.addEventListener("click", function () {
         applyFilter(function (a, b) {
@@ -152,13 +155,13 @@ function filters(photographers, media) {
     });
 
     filterDate.addEventListener("keydown", e => {
-        const key = e.key
+        const key = e.key;
         if (key === "Enter") {
             applyFilter(function (a, b) {
                 return new Date(b.date) - new Date(a.date);
             });
         }
-    })
+    });
 
     filterTitle.addEventListener("click", function () {
         applyFilter(function (a, b) {
@@ -173,7 +176,7 @@ function filters(photographers, media) {
     });
 
     filterTitle.addEventListener("keydown", e => {
-        const key = e.key
+        const key = e.key;
         if (key === "Enter") {
             applyFilter(function (a, b) {
                 if (a.title < b.title) {
@@ -185,5 +188,5 @@ function filters(photographers, media) {
                 return 0;
             });
         }
-    })
+    });
 }

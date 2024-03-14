@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const lightBox = document.getElementById("lightbox");
 
 function displayLightbox() {
@@ -23,7 +24,7 @@ export function generateLightBox(createdMedia) {
             });
 
             picture.addEventListener("keydown", e => {
-                const key = e.key
+                const key = e.key;
 
                 if (key === "Enter") {
                     currentImageIndex = index;
@@ -37,10 +38,22 @@ export function generateLightBox(createdMedia) {
     function displayImage(index) {
         const mediaType = createdMedia[index].tagName.toLowerCase(); // Récupérer le type de média (img ou video)
 
-        // Retirer ", cliquez pour agrandir" du texte de l'attribut alt
-        const altText = createdMedia[index].alt;
-        const newAltText = altText.replace(", cliquez pour agrandir", "");
-        createdMedia[index].alt = newAltText;
+        // Retirer ", cliquez pour agrandir" du texte de l'attribut alt ou title
+        let textContent = "";
+
+        if (createdMedia[index].tagName.toLowerCase() === "img") {
+            textContent = createdMedia[index].alt;
+        } else if (createdMedia[index].tagName.toLowerCase() === "video") {
+            textContent = createdMedia[index].title;
+        }
+
+        const newTextContent = textContent.replace(", cliquez pour agrandir", "");
+
+        if (createdMedia[index].tagName.toLowerCase() === "img") {
+            createdMedia[index].alt = newTextContent;
+        } else if (createdMedia[index].tagName.toLowerCase() === "video") {
+            createdMedia[index].title = newTextContent;
+        }
 
         const displayedImage = `
             <div class="lightbox_content" aria-label="image close-up view">
@@ -64,12 +77,12 @@ export function generateLightBox(createdMedia) {
         }
 
         // Ajouter un écouteur d'événements pour détecter le clic sur "avant" ou "après"
-        const leftArrow = document.querySelector(".fa-chevron-left")
-        const rightArrow = document.querySelector(".fa-chevron-right")
+        const leftArrow = document.querySelector(".fa-chevron-left");
+        const rightArrow = document.querySelector(".fa-chevron-right");
 
         rightArrow.addEventListener("click", () => {
             currentImageIndex = (currentImageIndex + 1) % cardMedia.length;
-            displayImage(currentImageIndex)
+            displayImage(currentImageIndex);
         });
         leftArrow.addEventListener("click", () => {
             currentImageIndex = (currentImageIndex - 1 + cardMedia.length) % cardMedia.length;
@@ -79,16 +92,16 @@ export function generateLightBox(createdMedia) {
         const closeBtn = document.querySelector(".fa-xmark");
         closeBtn.addEventListener("click", () => {
             closeLightbox();
-        })
+        });
     }
 
     lightBox.addEventListener("click", e => {
-        if (e.target !== e.currentTarget) return
+        if (e.target !== e.currentTarget) return;
         closeLightbox();
     });
 
     // Ajouter un écouteur d'événements pour détecter l'appui sur la touche "Escape"
-    document.addEventListener('keydown', e => {
+    document.addEventListener("keydown", e => {
         const key = e.key;
 
         if (key === "Escape") {
@@ -110,5 +123,5 @@ export function generateLightBox(createdMedia) {
         }
     });
 
-    showPictureInLightbox()
-};
+    showPictureInLightbox();
+}

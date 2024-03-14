@@ -1,3 +1,6 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable no-undef */
+
 import { updateTotalLikes } from "../pages/photographer.js";
 
 export class PhotographerFactory {
@@ -9,14 +12,14 @@ export class PhotographerFactory {
     }
 
     createMediaElement() {
-        const type = this.media.hasOwnProperty("image") ? "image" : "video";
+        const type = Object.prototype.hasOwnProperty.call(this.media, "image") ? "image" : "video";
 
         if (type === "image") {
             return this.displayPictures();
         } else if (type === "video") {
             return this.displayVideos();
         } else {
-            throw 'Not a video or a picture';
+            throw "Not a video or a picture";
         }
     }
 
@@ -49,7 +52,7 @@ export class PhotographerFactory {
             mediaCard.appendChild(imageDescription);
 
             const mediaInfos = document.createElement("div");
-            const mediaTitle = document.createElement("h3");
+            const mediaTitle = document.createElement("h2");
             mediaTitle.innerText = `${this.media.title}`;
             const mediaLikes = document.createElement("p");
             mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour aimer" tabindex="0"></i>`;
@@ -117,9 +120,8 @@ export class PhotographerFactory {
             const mediaCard = document.createElement("article");
             const video = document.createElement("video");
             video.setAttribute("src", `./assets/photographers/${this.media.photographerId}/${this.media.video}`);
-            video.setAttribute("data-likes", `${this.media.likes}`)
+            video.setAttribute("data-likes", `${this.media.likes}`);
             video.setAttribute("tabindex", "0");
-            video.setAttribute("alt", `${this.media.alt}`);
             video.setAttribute("title", `${this.media.alt}, cliquez pour agrandir`);
 
             //Création d'un span pour les lecteurs d'écrans seulement
@@ -131,7 +133,7 @@ export class PhotographerFactory {
             mediaCard.appendChild(imageDescription);
 
             const mediaInfos = document.createElement("div");
-            const mediaTitle = document.createElement("h3");
+            const mediaTitle = document.createElement("h2");
             mediaTitle.innerText = `${this.media.title}`;
             const mediaLikes = document.createElement("p");
             mediaLikes.innerHTML = `${this.media.likes} <i class="fa-solid fa-heart" aria-label="Bouton like, cliquez pour liker" tabindex="0"></i>`;

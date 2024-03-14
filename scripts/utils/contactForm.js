@@ -1,3 +1,7 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+
 function displayModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "block";
@@ -12,7 +16,7 @@ function closeModal() {
 }
 
 
-btnSubmit = document.querySelector(".submit_button")
+btnSubmit = document.querySelector(".submit_button");
 btnSubmit.addEventListener("click", function (event) {
     event.preventDefault();
 
@@ -30,4 +34,4 @@ btnSubmit.addEventListener("click", function (event) {
     console.log("Ceci est le nom: ", valueName);
     console.log("Ceci est l'adresse e-mail: ", valueEmail);
     console.log("Ceci est le message envoyé: ", valueMessage);
-})
+});
