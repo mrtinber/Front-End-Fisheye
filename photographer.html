@@ -2,12 +2,12 @@
 <html lang="fr">
 
 <head>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/photographer.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/9f1e376094.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <title>Fisheye - Photographe </title>
 </head>
 
@@ -15,7 +15,7 @@
   <!--Header-->
   <header>
     <a href="index.html" class="logo">
-      <img src="assets/images/logo.png" alt="Fisheye logo" aria-label="Fisheye home page" />
+      <img src="assets/images/logo.png" alt="Fisheye logo" aria-label="Fisheye home page">
     </a>
   </header>
 
@@ -29,17 +29,16 @@
     <!--Barre de filtres avec bouton déroulant-->
     <nav class="filterbar">
       <p>Trier par</p>
-      <div id="filter_select" aria-label="Sélectionner un filtre" aria-haspopup="true" aria-expanded="false"
-        tabindex="0">
+      <div id="filter_select" aria-label="Sélectionner un filtre" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <p id="filter_text">Popularité</p>
         <i class="fa-solid fa-chevron-down"></i>
-        <ul id="filter_options" aria-label="Filtres disponibles">
-          <li class="filter_choice" id="filter_popularity">Popularité</li>
-          <li class="filter_choice" id="filter_date">Date</li>
-          <li class="filter_choice" id="filter_title">Titre</li>
+        <ul id="filter_options" aria-label="Filtres disponibles" role="listbox">
+          <li class="filter_choice" id="filter_popularity" role="option">Popularité</li>
+          <li class="filter_choice" id="filter_date" role="option">Date</li>
+          <li class="filter_choice" id="filter_title" role="option">Titre</li>
         </ul>
       </div>
-    </nav>
+    </nav> 
 
     <!--Ensemble des médias du photographe-->
     <section class="photographer_media">
@@ -59,20 +58,20 @@
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Close contact form" tabindex="0" />
+        <img src="assets/icons/close.svg" onclick="closeModal()" alt="Icône de croix pour fermer la modale" aria-label="Fermer la modale" tabindex="0">
       </header>
       <form>
         <div>
           <label id="surnameLabel" for="surname">Prénom</label>
-          <input type="text" id="surname" aria-labelledby="surnameLabel" />
+          <input type="text" id="surname" aria-labelledby="surnameLabel">
           <label id="nameLabel" for="name">Nom</label>
-          <input type="text" id="name" aria-labelledby="nameLabel" />
+          <input type="text" id="name" aria-labelledby="nameLabel">
           <label id="emailLabel" for="email">E-mail</label>
-          <input type="email" id="email" aria-labelledby="emailLabel" />
+          <input type="email" id="email" aria-labelledby="emailLabel">
           <label id="messageLabel" for="message">Votre message</label>
           <textarea id="message" rows="3" aria-labelledby="messageLabel"></textarea>
         </div>
-        <input class="submit_button" type="submit" value="Envoyer" />
+        <input class="submit_button" type="submit" value="Envoyer">
       </form>
     </div>
   </section>

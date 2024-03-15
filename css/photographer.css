@@ -242,14 +242,21 @@
     animation: clicked 450ms ease;
 }
 
+.likeBtn {
+    border: none;
+    background-color: transparent;
+    color: #901C1C;
+    font-size: 24px;
+}
+
 @keyframes clicked {
     0% {
-        scale: 1;
+        transform: scale(1);
         opacity: 1;
     }
 
     100% {
-        scale: 2;
+        transform: scale(2);
         opacity: 0.3;
     }
 }
