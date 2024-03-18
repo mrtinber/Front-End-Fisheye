@@ -20,6 +20,7 @@ function toggleDropDown() {
 
   if (isOpen) {
     filterOptions.classList.add("show");
+    filterSelect.classList.add("show");
     filterArrow.style.rotate = "-180deg";
     filterChoice.forEach(choice => {
       choice.setAttribute("tabindex", "0");
@@ -27,6 +28,7 @@ function toggleDropDown() {
     filterChoice[0].focus();
   } else {
     filterOptions.classList.remove("show");
+    filterSelect.classList.remove("show");
     filterArrow.style.rotate = "0deg";
     filterChoice.forEach(choice => {
       choice.removeAttribute("tabindex");

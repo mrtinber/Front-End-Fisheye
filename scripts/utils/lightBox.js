@@ -93,6 +93,28 @@ export function generateLightBox(createdMedia) {
         closeBtn.addEventListener("click", () => {
             closeLightbox();
         });
+
+        // Ajouter un écouteur d'événements pour détecter l'appui sur "Entrée" pendant la navigation au clavier
+        closeBtn.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                closeLightbox();
+            }
+        });
+
+        rightArrow.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                currentImageIndex = (currentImageIndex + 1) % cardMedia.length;
+                displayImage(currentImageIndex);
+            }
+        });
+
+        leftArrow.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                currentImageIndex =
+                    (currentImageIndex - 1 + cardMedia.length) % cardMedia.length;
+                displayImage(currentImageIndex);
+            }
+        });
     }
 
     lightBox.addEventListener("click", e => {

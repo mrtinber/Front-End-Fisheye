@@ -137,6 +137,9 @@ function filters(photographers, media) {
         applyFilter(function (a, b) {
             return b.likes - a.likes;
         });
+        filterPopularity.style.display ="none";
+        filterTitle.style.display ="flex";
+        filterDate.style.display = "flex";
     });
 
     filterPopularity.addEventListener("keydown", e => {
@@ -146,12 +149,18 @@ function filters(photographers, media) {
                 return b.likes - a.likes;
             });
         }
+        filterPopularity.style.display ="none";
+        filterTitle.style.display ="flex";
+        filterDate.style.display = "flex";
     });
 
     filterDate.addEventListener("click", function () {
         applyFilter(function (a, b) {
             return new Date(b.date) - new Date(a.date);
         });
+        filterDate.style.display ="none";
+        filterPopularity.style.display ="flex";
+        filterTitle.style.display ="flex";
     });
 
     filterDate.addEventListener("keydown", e => {
@@ -161,6 +170,9 @@ function filters(photographers, media) {
                 return new Date(b.date) - new Date(a.date);
             });
         }
+        filterDate.style.display ="none";
+        filterPopularity.style.display ="flex";
+        filterTitle.style.display ="flex";
     });
 
     filterTitle.addEventListener("click", function () {
@@ -173,6 +185,9 @@ function filters(photographers, media) {
             }
             return 0;
         });
+        filterTitle.style.display ="none";
+        filterPopularity.style.display ="flex";
+        filterDate.style.display ="flex";
     });
 
     filterTitle.addEventListener("keydown", e => {
@@ -187,6 +202,9 @@ function filters(photographers, media) {
                 }
                 return 0;
             });
+            filterTitle.style.display ="none";
+            filterPopularity.style.display ="flex";
+            filterDate.style.display ="flex";
         }
     });
 }
