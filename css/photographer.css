@@ -161,19 +161,7 @@
 #filter_options li {
     padding: 14px 0;
     border-top: 2px solid white;
-    /* position:relative; */
 }
-
-/* #filter_options li::before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 85%;
-    height: 1px;
-    background-color: var(--color-light);
-} */
 
 #filter_popularity{
     display: none; 

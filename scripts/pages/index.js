@@ -7,7 +7,6 @@ async function getPhotographers() {
 
     // Convertir la réponse en JSON
     const photographersData = await response.json();
-    console.log(photographersData);
 
     // Retourner les données des photographes
     return photographersData;

@@ -25,7 +25,7 @@ export function photographerTemplate(data) {
         location.textContent = `${city}, ${country}`;
         location.setAttribute("aria-label", `Ville et pays : ${city}, ${country}`);
         location.setAttribute("class", "location_photographer");
-        
+
         const tagLine = document.createElement("span");
         tagLine.textContent = tagline;
         tagLine.setAttribute("aria-label", `Slogan : ${tagline}`);

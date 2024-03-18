@@ -22,7 +22,6 @@ async function displayData(photographers) {
     //Récupération de l'ID dans l'URL
     let params = new URL(document.location).searchParams;
     let photographerID = params.get("id");
-    console.log("ID du photographe:", photographerID);
 
     // Recherche du photographe avec l'ID correspondant
     const photographer = photographers.find(photographer => photographer.id === parseInt(photographerID));
@@ -84,9 +83,6 @@ function generateLikes(createdMedia) {
     const photographerPrice = document.getElementById("dailyPrice");
     divPrice.appendChild(photographerPrice);
     photographerLikes.innerHTML = `<p id="total_likes">${totalLikes} <i class="fa-solid fa-heart"></i></p>`;
-
-    console.log(createdMedia);
-    console.log("Total de likes:", totalLikes);
 }
 
 export function updateTotalLikes() {
@@ -126,8 +122,6 @@ function filters(photographers, media) {
     function applyFilter(sortFunction) {
         createdMedia = []; //Réinitialisation de createdMedia pour éviter le cumul du total de likes
         media.sort(sortFunction);
-        console.log({ media });
-        console.log({ photographersMedia });
         photographersMedia.innerHTML = "";
         generateMedia(photographers, media);
         generateLightBox(createdMedia);
@@ -137,8 +131,8 @@ function filters(photographers, media) {
         applyFilter(function (a, b) {
             return b.likes - a.likes;
         });
-        filterPopularity.style.display ="none";
-        filterTitle.style.display ="flex";
+        filterPopularity.style.display = "none";
+        filterTitle.style.display = "flex";
         filterDate.style.display = "flex";
     });
 
@@ -149,8 +143,8 @@ function filters(photographers, media) {
                 return b.likes - a.likes;
             });
         }
-        filterPopularity.style.display ="none";
-        filterTitle.style.display ="flex";
+        filterPopularity.style.display = "none";
+        filterTitle.style.display = "flex";
         filterDate.style.display = "flex";
     });
 
@@ -158,9 +152,9 @@ function filters(photographers, media) {
         applyFilter(function (a, b) {
             return new Date(b.date) - new Date(a.date);
         });
-        filterDate.style.display ="none";
-        filterPopularity.style.display ="flex";
-        filterTitle.style.display ="flex";
+        filterDate.style.display = "none";
+        filterPopularity.style.display = "flex";
+        filterTitle.style.display = "flex";
     });
 
     filterDate.addEventListener("keydown", e => {
@@ -170,9 +164,9 @@ function filters(photographers, media) {
                 return new Date(b.date) - new Date(a.date);
             });
         }
-        filterDate.style.display ="none";
-        filterPopularity.style.display ="flex";
-        filterTitle.style.display ="flex";
+        filterDate.style.display = "none";
+        filterPopularity.style.display = "flex";
+        filterTitle.style.display = "flex";
     });
 
     filterTitle.addEventListener("click", function () {
@@ -185,9 +179,9 @@ function filters(photographers, media) {
             }
             return 0;
         });
-        filterTitle.style.display ="none";
-        filterPopularity.style.display ="flex";
-        filterDate.style.display ="flex";
+        filterTitle.style.display = "none";
+        filterPopularity.style.display = "flex";
+        filterDate.style.display = "flex";
     });
 
     filterTitle.addEventListener("keydown", e => {
@@ -202,9 +196,9 @@ function filters(photographers, media) {
                 }
                 return 0;
             });
-            filterTitle.style.display ="none";
-            filterPopularity.style.display ="flex";
-            filterDate.style.display ="flex";
+            filterTitle.style.display = "none";
+            filterPopularity.style.display = "flex";
+            filterDate.style.display = "flex";
         }
     });
 }

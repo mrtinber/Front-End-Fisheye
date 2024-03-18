@@ -16,8 +16,6 @@ filterChoice.forEach(choice => {
 function toggleDropDown() {
   isOpen = !isOpen;
   filterSelect.setAttribute("aria-expanded", isOpen);
-  console.log(isOpen);
-
   if (isOpen) {
     filterOptions.classList.add("show");
     filterSelect.classList.add("show");

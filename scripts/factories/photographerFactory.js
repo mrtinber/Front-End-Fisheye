@@ -84,7 +84,6 @@ export class PhotographerFactory {
                                             </button>`;
                 }
                 mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
-                console.log(mediaData.liked);
 
                 img.setAttribute("data-likes", `${mediaData.likes}`);
 
@@ -109,7 +108,6 @@ export class PhotographerFactory {
                                                 </button>`;
                     }
                     mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
-                    console.log(mediaData.liked);
 
                     img.setAttribute("data-likes", `${mediaData.likes}`);
 
@@ -180,7 +178,6 @@ export class PhotographerFactory {
                                             </button>`;
                 }
                 mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
-                console.log(mediaData.liked);
 
                 video.setAttribute("data-likes", `${mediaData.likes}`);
 
@@ -205,7 +202,6 @@ export class PhotographerFactory {
                                                 </button>`;
                     }
                     mediaData.liked = !mediaData.liked; // Inverser l'état du like (true/false)
-                    console.log(mediaData.liked);
 
                     video.setAttribute("data-likes", `${mediaData.likes}`);
 
