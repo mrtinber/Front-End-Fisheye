@@ -81,8 +81,9 @@ function generateLikes(createdMedia) {
     const photographerLikes = document.createElement("div");
     divPrice.appendChild(photographerLikes);
     const photographerPrice = document.getElementById("dailyPrice");
+    photographerPrice.setAttribute("tabindex", "0");
     divPrice.appendChild(photographerPrice);
-    photographerLikes.innerHTML = `<p id="total_likes">${totalLikes} <i class="fa-solid fa-heart"></i></p>`;
+    photographerLikes.innerHTML = `<p id="total_likes" aria-label="Nombre total de likes: ${totalLikes}" tabindex="0">${totalLikes} <i class="fa-solid fa-heart"></i></p>`;
 }
 
 export function updateTotalLikes() {
@@ -95,7 +96,7 @@ export function updateTotalLikes() {
     });
     const photographerLikes = document.getElementById("total_likes");
     if (photographerLikes) {
-        photographerLikes.innerHTML = `<p id="total_likes">${totalLikes} <i class="fa-solid fa-heart"></i></p>`;
+        photographerLikes.innerHTML = `<p id="total_likes" aria-label="Nombre total de likes: ${totalLikes}" tabindex="0">${totalLikes} <i class="fa-solid fa-heart"></i></p>`;
     }
 }
 
@@ -142,10 +143,10 @@ function filters(photographers, media) {
             applyFilter(function (a, b) {
                 return b.likes - a.likes;
             });
+            filterPopularity.style.display = "none";
+            filterTitle.style.display = "flex";
+            filterDate.style.display = "flex";
         }
-        filterPopularity.style.display = "none";
-        filterTitle.style.display = "flex";
-        filterDate.style.display = "flex";
     });
 
     filterDate.addEventListener("click", function () {
@@ -163,10 +164,10 @@ function filters(photographers, media) {
             applyFilter(function (a, b) {
                 return new Date(b.date) - new Date(a.date);
             });
+            filterDate.style.display = "none";
+            filterPopularity.style.display = "flex";
+            filterTitle.style.display = "flex";
         }
-        filterDate.style.display = "none";
-        filterPopularity.style.display = "flex";
-        filterTitle.style.display = "flex";
     });
 
     filterTitle.addEventListener("click", function () {
